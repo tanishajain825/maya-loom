@@ -1,44 +1,91 @@
-
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Electron Wallpaper Changer - Architecture & Developer Guide</title>
-   <!--Tailwind CSS -->
-   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config= {
-      darkMode: 'class',
-      theme:  {
-        extend: {
-          colors:{
-            brand:{
-              50: '#eef2ff',
-              100: '#e0e7ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-              900: '#312e81',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <!-- FontAwesome Icons -->
-   <link rel="stylesheet" href="style.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   <!--Google Fonts Inter -->
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-   
-  </head>
+  <meta charset="UTF-8" />
+  <!-- Safety rule: sirf apni files, https images aur local files allowed -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' https: file: data:; style-src 'self'; script-src 'self'" />
+  <title>Reality Weaver</title>
+
+  <!-- Yahan style.css jud rahi hai -->
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
-  <h1>Welcome to Maya Loom!</h1>
-  <p id="message">Loading...</p>
-  <h3>The desktop wallpaper app!!</h3>
-  <script src="renderer.js"></script>
+
+  <!-- ===== Upar ka heading ===== -->
+  <header>
+    <h1>Reality Weaver</h1>
+    <p>Multiverse se wallpapers dhoondo, lagao aur vaults mein sambhalo</p>
+  </header>
+
+  <!-- ===== Tab buttons (CSS mein: nav, .tab, .tab.active) ===== -->
+  <nav>
+    <button id="tabExplore" class="tab active">Multiversal Portal</button>
+    <button id="tabVaults" class="tab">Sanctum of Memories</button>
+  </nav>
+
+  <!-- ===== B1 + B2: Explore section ===== -->
+  <section id="exploreSection">
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Kuch likho: space, mountains, anime..." />
+
+      <select id="categorySelect">
+        <option value="111">Sab categories</option>
+        <option value="100">General</option>
+        <option value="010">Anime</option>
+        <option value="001">People</option>
+      </select>
+
+      <select id="sortSelect">
+        <option value="relevance">Relevance</option>
+        <option value="toplist">Top</option>
+        <option value="random">Random</option>
+      </select>
+
+      <!-- B2: Wallpaper kaise fit ho -->
+      <select id="scaleSelect">
+        <option value="fill">Fill (crop karke)</option>
+        <option value="fit">Fit</option>
+        <option value="stretch">Stretch</option>
+        <option value="center">Center</option>
+      </select>
+
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <p id="statusText"></p>
+
+    <!-- Search ke wallpapers yahan cards ban kar aayenge (.grid) -->
+    <div id="results" class="grid"></div>
+  </section>
+
+  <!-- ===== B3: Vault section (shuru mein chhupa hua: class="hidden") ===== -->
+  <section id="vaultSection" class="hidden">
+    <div class="controls">
+      <input type="text" id="vaultNameInput" placeholder="Naye vault ka naam" />
+      <button id="createVaultBtn">Vault banao</button>
+
+      <select id="vaultSelect"></select>
+      <button id="deleteVaultBtn">Vault delete karo</button>
+    </div>
+
+    <div class="controls">
+      <button id="addLocalBtn">Computer se images jodo</button>
+      <button id="shuffleBtn">Shuffle</button>
+
+      <label>Har
+        <input type="number" id="intervalInput" value="5" min="1" />
+        minute mein badlo
+      </label>
+      <button id="startCycleBtn">Cycle shuru</button>
+      <button id="stopCycleBtn">Cycle band</button>
+    </div>
+
+    <p id="vaultStatus"></p>
+    <div id="vaultImages" class="grid"></div>
+  </section>
+
+  <!-- Yahan script.js jud rahi hai (hamesha sabse neeche) -->
+  <script src="script.js"></script>
 </body>
 </html>
