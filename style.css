@@ -1,29 +1,124 @@
-body
-{
-    font-family: 'Inter', sans-serif;
+/* style.css -> App ko sundar dikhane ke liye */
+
+/* Saari colors ek jagah, taaki baad mein badalna aasan ho */
+:root {
+  --bg: #1a0b0b;
+  --card: #2b1414;
+  --accent: #e63946;
+  --text: #fff3c4;
 }
 
-.glass-panel
-{
-    background: rgba(30, 41, 59, 0.7);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+* {
+  box-sizing: border-box;
 }
-.scrollbar-thin::-webkit-scrollbar
-{
-   width: 6px;
-   height: 6px;
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
 }
-.scrollbar-thin::-webkit-scrollbar-track
-{
-    background: rgba(15, 23, 42, 0.6);
+
+header {
+  text-align: center;
+  margin-bottom: 15px;
 }
-.scrollbar-thin::-webkit-scrollbar-thumb
-{
-    background: rgba(15, 23, 42, 0.6);
-    border-radius: 5px;
+
+h1 {
+  margin: 0;
+  color: var(--accent);
 }
-.scrollbar-thin::-webkit-scrollbar-thumb:horver
-{
-    background: rgba(99,102, 241, 0.6);
+
+/* Tabs */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab.active {
+  background: var(--accent);
+  color: white;
+}
+
+/* Buttons, inputs, selects ka common look */
+button,
+input,
+select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: var(--card);
+  color: var(--text);
+  font-size: 14px;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--accent);
+  color: white;
+}
+
+/* Controls wali row */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.controls input[type="text"] {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Wallpapers ka grid (jaali) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 15px;
+}
+
+/* Har wallpaper ka card */
+.card {
+  background: var(--card);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover; /* image ko crop karke fit karta hai */
+  display: block;
+}
+
+.card .info {
+  padding: 8px;
+  font-size: 13px;
+}
+
+.card .info a {
+  color: var(--accent);
+}
+
+.card .buttons {
+  display: flex;
+  gap: 6px;
+  padding: 0 8px 8px;
+}
+
+.card .buttons button {
+  flex: 1;
+  padding: 6px;
+  font-size: 12px;
+}
+
+.hidden {
+  display: none;
 }
