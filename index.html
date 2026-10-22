@@ -5,16 +5,17 @@
   <!-- Safety rule: sirf apni files, https images aur local files allowed -->
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; img-src 'self' https: file: data:; style-src 'self'; script-src 'self'" />
-  <title>Reality Weaver</title>
+  <title>MAYALOOM</title>
 
   <!-- Yahan style.css jud rahi hai -->
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="package.json"/>
 </head>
 <body>
 
   <!-- ===== Upar ka heading ===== -->
   <header>
-    <h1>Reality Weaver</h1>
+    <h1>MAYALOOM</h1>
     <p>Multiverse se wallpapers dhoondo, lagao aur vaults mein sambhalo</p>
   </header>
 
@@ -27,13 +28,15 @@
   <!-- ===== B1 + B2: Explore section ===== -->
   <section id="exploreSection">
     <div class="controls">
-      <input type="text" id="searchInput" placeholder="Kuch likho: space, mountains, anime..." />
+      <input type="text" id="searchInput" placeholder="enter your search query" />
 
       <select id="categorySelect">
         <option value="111">Sab categories</option>
         <option value="100">General</option>
         <option value="010">Anime</option>
-        <option value="001">People</option>
+        <option value="001">Mountains</option>
+        <option value="000">Temples</option>
+        <option value="011">Moons</option>
       </select>
 
       <select id="sortSelect">
@@ -62,7 +65,7 @@
   <!-- ===== B3: Vault section (shuru mein chhupa hua: class="hidden") ===== -->
   <section id="vaultSection" class="hidden">
     <div class="controls">
-      <input type="text" id="vaultNameInput" placeholder="Naye vault ka naam" />
+      <input type="text" id="vaultNameInput" placeholder="value" />
       <button id="createVaultBtn">Vault banao</button>
 
       <select id="vaultSelect"></select>
@@ -70,7 +73,7 @@
     </div>
 
     <div class="controls">
-      <button id="addLocalBtn">Computer se images jodo</button>
+      <button id="addLocalBtn">Add local images to computer</button>
       <button id="shuffleBtn">Shuffle</button>
 
       <label>Har
