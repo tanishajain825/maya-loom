@@ -1,0 +1,264 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #111116;
+    --surface: #1c1c24;
+    --surface-hover: #292934;
+    --text: #f4f4f7;
+    --muted: #a3a3b3;
+    --accent: #b69cff;
+    --border: #343440;
+    --danger: #ff7777;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--text);
+    font-family: "Segoe UI", sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.app {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    min-height: 100vh;
+}
+
+.sidebar {
+    padding: 30px 20px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+}
+
+.logo {
+    margin: 0 0 8px;
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    margin: 0 0 40px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.nav-label {
+    margin: 25px 0 12px;
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.nav-item {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 12px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    text-align: left;
+}
+
+.nav-item.active {
+    background: var(--surface-hover);
+    color: var(--accent);
+}
+
+.main-content {
+    min-width: 0;
+    padding: 42px;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h2 {
+    margin: 0 0 10px;
+    font-size: 32px;
+}
+
+.page-header p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.create-panel {
+    margin-bottom: 35px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+}
+
+.create-panel h3 {
+    margin-top: 0;
+}
+
+.create-form {
+    display: flex;
+    gap: 12px;
+}
+
+.create-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--background);
+    color: var(--text);
+}
+
+.primary-button {
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #17131f;
+    font-weight: 600;
+}
+
+.primary-button:hover {
+    filter: brightness(1.08);
+}
+
+.status-message {
+    min-height: 20px;
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.status-message.error {
+    color: var(--danger);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    margin: 0;
+}
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 18px;
+}
+
+.collection-card {
+    min-width: 0;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+}
+
+.collection-icon {
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.collection-card h4 {
+    margin: 0 0 8px;
+    overflow-wrap: anywhere;
+}
+
+.collection-card p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.secondary-button,
+.delete-button {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--surface-hover);
+    color: var(--text);
+}
+
+.delete-button {
+    color: var(--danger);
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    padding: 45px 20px;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.collection-details {
+    margin-top: 30px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+}
+
+.collection-details h3 {
+    margin-top: 0;
+}
+
+.collection-details[hidden] {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .app {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        padding: 20px;
+    }
+
+    .tagline {
+        margin-bottom: 15px;
+    }
+
+    .main-content {
+        padding: 24px 18px;
+    }
+
+    .create-form {
+        flex-direction: column;
+    }
+}

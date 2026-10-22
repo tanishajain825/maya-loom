@@ -1,14 +1,131 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maya Loom</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maya Loom | Collections</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <h1>Welcome to Maya Loom!</h1>
-  <p id="message">Loading...</p>
-  <script src="renderer.js"></script>
+
+    <div class="app">
+
+        <aside class="sidebar">
+
+            <h1 class="logo">MAYA LOOM</h1>
+
+            <p class="tagline">Your world, your wallpapers.</p>
+
+            <p class="nav-label">Library</p>
+
+            <button class="nav-item" type="button" disabled>
+                All Wallpapers
+            </button>
+
+            <button class="nav-item" type="button" disabled>
+                Favorites
+            </button>
+
+            <p class="nav-label">Organize</p>
+
+            <button class="nav-item active" type="button">
+                Collections
+            </button>
+
+        </aside>
+
+        <main class="main-content">
+
+            <header class="page-header">
+
+                <h2>Your Collections</h2>
+
+                <p>
+                    Create your own spaces for the wallpapers you love.
+                </p>
+
+            </header>
+
+            <section class="create-panel">
+
+                <h3>Create a collection</h3>
+
+                <form id="collection-form" class="create-form">
+
+                    <input
+                        type="text"
+                        id="collection-name"
+                        placeholder="e.g. Dream Setup"
+                        maxlength="60"
+                        autocomplete="off"
+                        aria-label="Collection name"
+                        required
+                    >
+
+                    <button class="primary-button" type="submit">
+                        + Create Collection
+                    </button>
+
+                </form>
+
+                <p
+                    id="status-message"
+                    class="status-message"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+
+            </section>
+
+            <section>
+
+                <div class="section-header">
+
+                    <h3>My Collections</h3>
+
+                    <span id="collection-count">0 collections</span>
+
+                </div>
+
+                <div
+                    id="collection-grid"
+                    class="collection-grid"
+                ></div>
+
+            </section>
+
+            <section
+                id="collection-details"
+                class="collection-details"
+                hidden
+            >
+
+                <h3 id="selected-collection-name"></h3>
+
+                <p id="selected-collection-count"></p>
+
+                <div id="collection-wallpapers"></div>
+
+                <button
+                    id="close-collection"
+                    class="secondary-button"
+                    type="button"
+                >
+                    Close Collection
+                </button>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="renderer.js"></script>
+
 </body>
+
 </html>
