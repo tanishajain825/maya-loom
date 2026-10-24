@@ -1,124 +1,474 @@
-/* style.css -> App ko sundar dikhane ke liye */
-
-/* Saari colors ek jagah, taaki baad mein badalna aasan ho */
-:root {
-  --bg: #1a0b0b;
-  --card: #2b1414;
-  --accent: #e63946;
-  --text: #fff3c4;
-}
-
-* {
-  box-sizing: border-box;
-}
-
+/* Basic website design */
 body {
-  margin: 0;
-  padding: 20px;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #010736;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+:root {
+  --glow: #8a5cff;
+  --muted: #a99fd6;
 }
 
+/* Main heading */
 header {
-  text-align: center;
-  margin-bottom: 15px;
+    text-align: center;
+    padding: 20px;
 }
 
-h1 {
-  margin: 0;
-  color: var(--accent);
+header h1 {
+    color: #bd83ff;
+    letter-spacing: 3px;
 }
 
-/* Tabs */
+header p {
+    color: #aaaaaa;
+}
+
+/* Navigation buttons */
 nav {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+    text-align: center;
+    margin: 20px;
 }
 
-.tab.active {
-  background: var(--accent);
-  color: white;
-}
-
-/* Buttons, inputs, selects ka common look */
-button,
-input,
-select {
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid #555;
-  background: var(--card);
-  color: var(--text);
-  font-size: 14px;
-}
-
+/* Common button design */
 button {
-  cursor: pointer;
+    background-color: #8e44ad;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-button:hover {
-  background: var(--accent);
-  color: white;
-}
-
-/* Controls wali row */
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.controls input[type="text"] {
-  flex: 1;
-  min-width: 200px;
-}
-
-/* Wallpapers ka grid (jaali) */
-.grid {
+/* ===== INTRO: gate -> darwaze khulna -> MayaLoom ===== */
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 15px;
+  place-items: center;
+  background: radial-gradient(circle at 50% 40%, #12093a 0%, #05030f 70%);
+  cursor: pointer;
+  transition: opacity 1s ease;
 }
 
-/* Har wallpaper ka card */
-.card {
-  background: var(--card);
-  border-radius: 10px;
+#intro.leave {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Mouse button par le jaane par */
+button:hover {
+    background-color: #b05ce2;
+}
+
+/* Search box layout */
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin: 25px 0;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background-color: #20202a;
+    color: white;
+}
+
+/* Category buttons */
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+/* Wallpaper grid */
+.wallpaper-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Individual wallpaper card */
+.wallpaper-card {
+    background-color: #181820;
+    border-radius: 12px;
+    overflow: hidden;
+    padding-bottom: 12px;
+}
+
+/* Wallpaper image */
+.wallpaper-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* Wallpaper title */
+.wallpaper-card h3 {
+    padding: 0 12px;
+}
+
+/* Saved wallpaper button */
+.wallpaper-card button {
+    margin-left: 12px;
+}
+
+/* Mobile responsive design */
+@media (max-width: 600px) {
+    .wallpaper-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .wallpaper-card img {
+        height: 200px;
+    }
+
+    body {
+        padding: 12px;
+    }
+
+    .search-box {
+        gap: 5px;
+    }
+}
+
+.category-slider {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 15px;
+    background: #010736;
+    scrollbar-width: none;
+}
+
+.category-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.category-slider button {
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    color: whitesmoke;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 8px 0;
+}
+
+.category-slider button.active {
+    color: white;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.category-slider button:hover {
+    color: white;
+}
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 70% 20%, #cdbdff, transparent),
+    radial-gradient(2px 2px at 40% 80%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 85% 65%, #bcd7ff, transparent),
+    radial-gradient(1.5px 1.5px at 10% 70%, #fff, transparent),
+    radial-gradient(2px 2px at 60% 55%, #d8ccff, transparent);
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.4; }
+  to   { opacity: 1; }
+}
+
+.gate-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.gate-wrap > * {
+  grid-area: 1 / 1;
+}
+
+.gate {
+  position: relative;
+width: min(60vh, 85vw);
+  height: 78vh;
+  overflow: hidden;
+  border-radius: 999px 999px 0 0;
+  border: 4px solid rgba(190, 170, 255, 0.8);
+  box-shadow:
+    0 0 40px var(--glow),
+    inset 0 0 40px rgba(138, 92, 255, 0.5);
+  background: #05030f;
+  animation: gateIn 1.4s ease-out both;   /* 1) gate aata hai */
+}
+
+@keyframes gateIn {
+  from { opacity: 0; transform: scale(0.7) translateY(40px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.portal {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
 }
 
-.card img {
-  width: 100%;
-  height: 140px;
-  object-fit: cover; /* image ko crop karke fit karta hai */
-  display: block;
+.portal::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background:
+    conic-gradient(from 0deg,
+      #0b1a6b, #5b34d6, #1e5bd6, #2a0f66, #7a4dff, #0b1a6b);
+  filter: blur(30px);
+  animation: spin 14s linear infinite;
 }
 
-.card .info {
-  padding: 8px;
-  font-size: 13px;
+.portal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 60%, transparent 20%, rgba(5, 3, 15, 0.7) 100%);
 }
 
-.card .info a {
-  color: var(--accent);
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-.card .buttons {
-  display: flex;
-  gap: 6px;
-  padding: 0 8px 8px;
+.door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: linear-gradient(180deg, #0d0828, #1a1050);
+  border: 1px solid rgba(190, 170, 255, 0.4);
+  animation-duration: 1.6s;
+  animation-delay: 1.5s;             /* 2) gate aane ke baad khulte hain */
+  animation-timing-function: cubic-bezier(0.6, 0, 0.2, 1);
+  animation-fill-mode: forwards;
 }
 
-.card .buttons button {
-  flex: 1;
-  padding: 6px;
+.door.left {
+  left: 0;
+  animation-name: doorLeft;
+}
+
+.door.right {
+  right: 0;
+  animation-name: doorRight;
+}
+
+@keyframes doorLeft {
+  to { transform: translateX(-101%); }
+}
+
+@keyframes doorRight {
+  to { transform: translateX(101%); }
+}
+
+.logo {
+  text-align: center;
+  z-index: 2;
+  opacity: 0;
+  animation: logoIn 1.8s ease-out 3s forwards;   /* 3) darwaze khulne ke baad logo */
+}
+
+.logo h2 {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: normal;
+  font-size: clamp(40px, 8vw, 72px);
+  letter-spacing: normal;
+  white-space: nowrap;
+  background: linear-gradient(90deg, #ffffff, #c9b6ff, #7fc4ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 14px rgba(160, 130, 255, 0.9));
+}
+
+.logo p {
+  margin: 8px 0 0;
+  letter-spacing: 4px;
   font-size: 12px;
+  color: var(--muted);
 }
 
-.hidden {
-  display: none;
+@keyframes logoIn {
+  from { opacity: 0; transform: scale(0.9); filter: blur(10px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+
+.skip-hint {
+  position: absolute;
+  bottom: 18px;
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.6;
+}
+/* =====================================================
+   BUTTONS: neon pill + ripple
+   ===================================================== */
+button {
+    position: relative;      /* ripple button ke andar rahe */
+    overflow: hidden;
+    cursor: pointer;
+    margin: 5px;
+    padding: 10px 24px;
+    border-radius: 999px;
+    border: 1px solid rgba(170, 130, 255, 0.9);
+    background: rgba(10, 6, 30, 0.85);
+    color: var(--text);
+    font-size: 14px;
+    box-shadow:
+        0 0 8px var(--glow-soft),
+        inset 0 0 8px rgba(138, 92, 255, 0.35);
+    transition: box-shadow 0.3s, transform 0.2s, background 0.3s;
+}
+
+/* Mouse button par le jaane par */
+button:hover {
+    box-shadow:
+        0 0 18px var(--glow),
+        inset 0 0 12px rgba(138, 92, 255, 0.6);
+    transform: translateY(-1px);
+}
+
+/* Jo tab chuna hua hai (Home / Saved) */
+nav button.active {
+    background: linear-gradient(135deg, #5b34d6, #8a5cff);
+    color: white;
+    box-shadow: 0 0 18px var(--glow);
+}
+/* ---- Pillars (gate ke dono taraf) ---- */
+.pillar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 5vw;
+    background:
+        repeating-linear-gradient(90deg, rgba(150, 130, 255, 0.14) 0 2px, transparent 2px 10px),
+        linear-gradient(180deg, #0a0830, #17104f 55%, #0a0830);
+    box-shadow: inset 0 0 14px rgba(150, 130, 255, 0.35);
+    animation: fadeIn 2s ease 0.6s both;
+}
+
+.p1 { left:  calc(50% - var(--gw) / 2 - 16vw); opacity: 0.4; }
+.p2 { left:  calc(50% - var(--gw) / 2 - 8vw);  opacity: 0.8; }
+.p3 { right: calc(50% - var(--gw) / 2 - 8vw);  opacity: 0.8; }
+.p4 { right: calc(50% - var(--gw) / 2 - 16vw); opacity: 0.4; }
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+}
+/* Arch ka sunehra-neela frame */
+.arch {
+    position: relative;
+    width: var(--gw);
+    height: 74vh;
+    padding: 10px;
+    border-radius: 999px 999px 0 0;
+    background: linear-gradient(180deg, #f0d9a0 0%, #a98be6 14%, #5a45c0 45%, #2a2078 100%);
+    box-shadow: 0 0 70px rgba(110, 80, 255, 0.65);
+    animation: gateIn 1.4s ease-out both;      /* 1) gate aata hai */
+}
+
+/* Arch ke upar ka chamakta keystone */
+.arch::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    transform: translateX(-50%) rotate(45deg);
+    border-radius: 6px;
+    background: linear-gradient(135deg, #f6e4b4, #8d6fd6);
+    box-shadow: 0 0 18px #cdb6ff;
+}
+/* Gate ke neeche halki neeli roshni, photo ke horizon glow jaisi */
+.arch::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -14px;
+    width: 120%;
+    height: 28px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(140, 170, 255, 0.85), transparent 70%);
+    filter: blur(6px);
+}
+
+@keyframes gateIn {
+    from { opacity: 0; transform: scale(1.2) translateY(40px); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* ---- Neeche chamakta paani ---- */
+.floor {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 10vh;
+    z-index: 1;
+    background: linear-gradient(180deg,
+        rgba(120, 150, 255, 0.5) 0%,
+        rgba(50, 40, 140, 0.35) 10%,
+        rgba(8, 6, 40, 0.9) 60%,
+        #03020c 100%);
+}
+
+/* Horizon ki chamakti line */
+.floor::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 20px;
+    background: linear-gradient(90deg, transparent, #9fc2ff, transparent);
+    box-shadow: 0 0 26px 6px rgba(120, 150, 255, 0.7);
+}
+
+/* Failti hui rings */
+.ring {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    width: 42vw;
+    height: 5vh;
+    border: 1px solid rgba(170, 190, 255, 0.55);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0;
+    animation: ringOut 5s ease-out infinite;
+}
+
+.r1 { animation-delay: 2.5s; }
+.r2 { animation-delay: 3.7s; }
+.r3 { animation-delay: 4.9s; }
+
+@keyframes ringOut {
+    0%   { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
+    30%  { opacity: 0.7; }
+    100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }
 }
