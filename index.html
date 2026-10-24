@@ -1,94 +1,116 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <!-- Safety rule: sirf apni files, https images aur local files allowed -->
-  <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; img-src 'self' https: file: data:; style-src 'self'; script-src 'self'" />
-  <title>MAYALOOM</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Yahan style.css jud rahi hai -->
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="package.json"/>
+    <title>MAYALOOM Wallpapers</title>
+
+    <!-- CSS file connect karna -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+        <!-- =====================================================
+         INTRO: gate aata hai -> darwaze khulte hain -> MayaLoom
+         ===================================================== -->
+    <div id="intro">
+        <div class="stars"></div>
 
-  <!-- ===== Upar ka heading ===== -->
-  <header>
-    <h1>MAYALOOM</h1>
-    <p>Multiverse se wallpapers dhoondo, lagao aur vaults mein sambhalo</p>
-  </header>
+        <!-- Gate ke dono taraf pillars -->
+        <div class="pillar p1"></div>
+        <div class="pillar p2"></div>
+        <div class="pillar p3"></div>
+        <div class="pillar p4"></div>
 
-  <!-- ===== Tab buttons (CSS mein: nav, .tab, .tab.active) ===== -->
-  <nav>
-    <button id="tabExplore" class="tab active">Multiversal Portal</button>
-    <button id="tabVaults" class="tab">Sanctum of Memories</button>
-  </nav>
+        <!-- Lehraate roshni ke ribbons -->
+        <div class="ribbon left"></div>
+        <div class="ribbon right"></div>
 
-  <!-- ===== B1 + B2: Explore section ===== -->
-  <section id="exploreSection">
-    <div class="controls">
-      <input type="text" id="searchInput" placeholder="enter your search query" />
+        <!-- Neeche chamakta paani -->
+        <div class="floor">
+            <span class="ring r1"></span>
+            <span class="ring r2"></span>
+            <span class="ring r3"></span>
+        </div>
 
-      <select id="categorySelect">
-        <option value="111">Sab categories</option>
-        <option value="100">General</option>
-        <option value="010">Anime</option>
-        <option value="001">Mountains</option>
-        <option value="000">Temples</option>
-        <option value="011">Moons</option>
-      </select>
+        <!-- Gate + logo -->
+        <div class="gate-wrap">
+            <div class="arch">
+                <div class="gate">
+                    <div class="portal"></div>
+                    <div class="door left"></div>
+                    <div class="door right"></div>
+                </div>
+            </div>
 
-      <select id="sortSelect">
-        <option value="relevance">Relevance</option>
-        <option value="toplist">Top</option>
-        <option value="random">Random</option>
-      </select>
+            <div class="logo">
+                <h2><span class="cap">M</span>aya <span class="cap">L</span>oom</h2>
+                <span class="swirl"></span>
+                <p>YOUR DESKTOP, YOUR UNIVERSE.</p>
+            </div>
+        </div>
 
-      <!-- B2: Wallpaper kaise fit ho -->
-      <select id="scaleSelect">
-        <option value="fill">Fill (crop karke)</option>
-        <option value="fit">Fit</option>
-        <option value="stretch">Stretch</option>
-        <option value="center">Center</option>
-      </select>
+        <!-- Udti pankhudiyan -->
+        <div class="petal pt1"></div>
+        <div class="petal pt2"></div>
+        <div class="petal pt3"></div>
+        <div class="petal pt4"></div>
+        <div class="petal pt5"></div>
+        <div class="petal pt6"></div>
 
-      <button id="searchBtn">Search</button>
+        <!-- Chamakte phool aur jhaadiyan -->
+        <div class="flower f1"></div>
+        <div class="flower f2"></div>
+        <div class="flower f3"></div>
+        <div class="flower f4"></div>
+        <div class="bush left"></div>
+        <div class="bush right"></div>
+
+
+        <span class="skip-hint">Click anywhere to skip</span>
     </div>
 
-    <p id="statusText"></p>
+    <!-- MAIN APP -->
+    <!-- Website heading -->
+    <header>
+        <h1>✦ MAYALOOM</h1>
+        <p>Find your favourite wallpaper!</p>
+    </header>
 
-    <!-- Search ke wallpapers yahan cards ban kar aayenge (.grid) -->
-    <div id="results" class="grid"></div>
-  </section>
+    <!-- Navigation buttons -->
+    <nav>
+        <button onclick="showHome()">Home</button>
+        <button onclick="showSaved()">Saved Wallpapers</button>
+    </nav>
 
-  <!-- ===== B3: Vault section (shuru mein chhupa hua: class="hidden") ===== -->
-  <section id="vaultSection" class="hidden">
-    <div class="controls">
-      <input type="text" id="vaultNameInput" placeholder="value" />
-      <button id="createVaultBtn">Vault banao</button>
+    <h2>CATEGORIES</h2>
 
-      <select id="vaultSelect"></select>
-      <button id="deleteVaultBtn">Vault delete karo</button>
+    <div class="category-slider">
+        <button onclick="filterCategory('all')">All</button>
+        <button onclick="filterCategory('moon')">Moon</button>
+        <button onclick="filterCategory('nature')">Nature</button>
+        <button onclick="filterCategory('mountains')">Mountains</button>
+        <button onclick="filterCategory('flower')">Flower</button>
     </div>
 
-    <div class="controls">
-      <button id="addLocalBtn">Add local images to computer</button>
-      <button id="shuffleBtn">Shuffle</button>
-
-      <label>Har
-        <input type="number" id="intervalInput" value="5" min="1" />
-        minute mein badlo
-      </label>
-      <button id="startCycleBtn">Cycle shuru</button>
-      <button id="stopCycleBtn">Cycle band</button>
+    <!-- Search box -->
+    <div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search wallpapers..."
+        >
+        <button onclick="searchWallpapers()">Search</button>
     </div>
 
-    <p id="vaultStatus"></p>
-    <div id="vaultImages" class="grid"></div>
-  </section>
+    <!-- Wallpaper heading -->
+    <h2 id="heading">Top Wallpapers</h2>
 
-  <!-- Yahan script.js jud rahi hai (hamesha sabse neeche) -->
-  <script src="script.js"></script>
+    <!-- JavaScript yahan wallpaper cards show karega -->
+    <div id="wallpaperContainer" class="wallpaper-grid"></div>
+
+    <!-- JavaScript file connect karna -->
+    <script src="script.js"></script>
+
 </body>
 </html>
