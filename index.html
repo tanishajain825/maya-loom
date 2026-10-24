@@ -1,53 +1,119 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Maya Loom | Collections</title>
-
+    <title>Maya Loom | Wallpapers & Collections</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="app">
 
-        <aside class="sidebar">
+    <!-- Animated introduction -->
+    <div id="intro">
+        <div class="stars"></div>
 
-            <h1 class="logo">MAYA LOOM</h1>
+        <div class="pillar p1"></div>
+        <div class="pillar p2"></div>
+        <div class="pillar p3"></div>
+        <div class="pillar p4"></div>
 
-            <p class="tagline">Your world, your wallpapers.</p>
+        <div class="ribbon left"></div>
+        <div class="ribbon right"></div>
 
-            <p class="nav-label">Library</p>
+        <div class="floor">
+            <span class="ring r1"></span>
+            <span class="ring r2"></span>
+            <span class="ring r3"></span>
+        </div>
 
-            <button class="nav-item" type="button" disabled>
-                All Wallpapers
-            </button>
+        <div class="gate-wrap">
+            <div class="arch">
+                <div class="gate">
+                    <div class="portal"></div>
+                    <div class="door left"></div>
+                    <div class="door right"></div>
+                </div>
+            </div>
 
-            <button class="nav-item" type="button" disabled>
-                Favorites
-            </button>
+            <div class="logo">
+                <h2><span class="cap">M</span>aya <span class="cap">L</span>oom</h2>
+                <span class="swirl"></span>
+                <p>YOUR DESKTOP, YOUR UNIVERSE.</p>
+            </div>
+        </div>
 
-            <p class="nav-label">Organize</p>
+        <div class="petal pt1"></div>
+        <div class="petal pt2"></div>
+        <div class="petal pt3"></div>
+        <div class="petal pt4"></div>
+        <div class="petal pt5"></div>
+        <div class="petal pt6"></div>
 
-            <button class="nav-item active" type="button">
-                Collections
-            </button>
+        <div class="flower f1"></div>
+        <div class="flower f2"></div>
+        <div class="flower f3"></div>
+        <div class="flower f4"></div>
+        <div class="bush left"></div>
+        <div class="bush right"></div>
 
-        </aside>
+        <span class="skip-hint">Click anywhere to skip</span>
+    </div>
+
+    <!-- Main wallpaper application -->
+    <div id="home-page">
+
+        <header>
+            <h1>✦ MAYALOOM</h1>
+            <p>Find your favourite wallpaper!</p>
+        </header>
+
+        <nav>
+            <button type="button" onclick="showHome()">Home</button>
+            <button type="button" onclick="showSaved()">Saved Wallpapers</button>
+            <button type="button" onclick="showCollections()">Collections</button>
+        </nav>
+
+        <section id="wallpaper-page">
+
+            <h2>CATEGORIES</h2>
+
+            <div class="category-slider">
+                <button type="button" class="seg active" onclick="filterCategory('all')">All</button>
+
+                <button type="button" class="seg" onclick="filterCategory('space')">Space</button>
+
+                <button type="button" class="seg" onclick="filterCategory('moon')">Moon</button>
+
+                <button type="button" class="seg" onclick="filterCategory('nature')">Nature</button>
+
+                <button type="button" class="seg" onclick="filterCategory('mountains')">Mountains</button>
+
+                <button type="button" class="seg" onclick="filterCategory('flower')">Flower</button>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search wallpapers..." aria-label="Search wallpapers">
+                <button type="button" onclick="searchWallpapers()">Search</button>
+            </div>
+
+            <h2 id="heading">Top Wallpapers</h2>
+
+            <div id="wallpaperContainer" class="wallpaper-grid"></div>
+
+        </section>
+    </div>
+    
+    <!-- Collections interface -->
+    <section id="collections-page" hidden>
 
         <main class="main-content">
 
             <header class="page-header">
-
                 <h2>Your Collections</h2>
-
-                <p>
-                    Create your own spaces for the wallpapers you love.
-                </p>
-
+                <p>Create your own spaces for the wallpapers you love.</p>
             </header>
 
             <section class="create-panel">
@@ -56,15 +122,8 @@
 
                 <form id="collection-form" class="create-form">
 
-                    <input
-                        type="text"
-                        id="collection-name"
-                        placeholder="e.g. Dream Setup"
-                        maxlength="60"
-                        autocomplete="off"
-                        aria-label="Collection name"
-                        required
-                    >
+                    <input type="text" id="collection-name" placeholder="e.g. Dream Setup" maxlength="60"
+                        autocomplete="off" aria-label="Collection name" required>
 
                     <button class="primary-button" type="submit">
                         + Create Collection
@@ -72,49 +131,29 @@
 
                 </form>
 
-                <p
-                    id="status-message"
-                    class="status-message"
-                    role="status"
-                    aria-live="polite"
-                ></p>
+                <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
 
             </section>
 
             <section>
 
                 <div class="section-header">
-
                     <h3>My Collections</h3>
-
                     <span id="collection-count">0 collections</span>
-
                 </div>
 
-                <div
-                    id="collection-grid"
-                    class="collection-grid"
-                ></div>
+                <div id="collection-grid" class="collection-grid"></div>
 
             </section>
 
-            <section
-                id="collection-details"
-                class="collection-details"
-                hidden
-            >
+            <section id="collection-details" class="collection-details" hidden>
 
                 <h3 id="selected-collection-name"></h3>
-
                 <p id="selected-collection-count"></p>
 
                 <div id="collection-wallpapers"></div>
 
-                <button
-                    id="close-collection"
-                    class="secondary-button"
-                    type="button"
-                >
+                <button id="close-collection" class="secondary-button" type="button">
                     Close Collection
                 </button>
 
@@ -122,9 +161,13 @@
 
         </main>
 
-    </div>
+    </section>
 
+
+
+    <script src="script.js"></script>
     <script src="renderer.js"></script>
+
 
 </body>
 

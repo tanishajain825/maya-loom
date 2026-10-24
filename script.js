@@ -1,0 +1,631 @@
+/* Step 1: Wallpaper data */
+
+let wallpapers = [
+    {
+        name: "Cosmic Beauty",
+        category: "space",
+        image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        name: "Cosmic Beauty",
+        category: "space",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM3nGmVTzxpO2c-E3u9rh1_0WFT2-Rw6qCdOc-qd7wVw&s=10"
+    },
+    {
+        name: "Cosmic Beauty",
+        category: "space",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7dTSPX9SOrZvQ7IDHervZfTb9jPPXKu8YL-IoArGapg&s=10"
+    },
+    {
+        name: "Cosmic Beauty",
+        category: "space",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9zl1_NqfGOgVhPMY54FxMMADhDDdSBcHDOlgB4jq35Q&s=10"
+    },
+    {
+        name: "Cosmic Beauty",
+        category: "space",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXTP0_zKx5M9InXYuVNvZXwSK8MAHWNbx4gY9m5bMfPg&s=10"
+    },
+    {
+        name: "Cosmic Beauty",
+        category: "space",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwyJmh2qZGYE6qnSmK-KrbwLaH10RlzM1gEwzKQoEeTCgeyY8rYrFKfiY&s=10"
+    },
+    {
+        name: "Cosmic Beauty",
+        category: "space",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7dTSPX9SOrZvQ7IDHervZfTb9jPPXKu8YL-IoArGapg&s=10"
+    },
+    {
+        name: "Cosmic Beauty",
+        category: "space",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVY4s2d17Sz8nwTemzCcFriHSLJsncf37VzVOqot6sBw&s=10"
+    },
+    {
+        name: " Nature is bliss",
+        category: "nature",
+        image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        name: " Nature is bliss",
+        category: "nature",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXm7IBS8ceoXrttgPYm-8nN4kR-WinkfgT8BBj_cTqNA&s=10"
+    },
+    {
+        name: " Nature is bliss",
+        category: "nature",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgguETy_9kZhPPuEmDUtgbKDjY4QRkVUQEALhuxJNOkA&s=10"
+    },
+    {
+        name: " Nature is bliss",
+        category: "nature",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1DmzeXGV27AZHRF5hEbtEa5AWwiGbhw1FFKcDSRHgUw&s=10"
+    },
+    {
+        name: " Nature is bliss",
+        category: "nature",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_HqQtGKE_Anx8D4ZazL3NyCaIqxUd5vwflmx5NHExNw&s=10"
+    },
+    {
+        name: " Nature is bliss",
+        category: "nature",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_pfuAcF5HWDKgHgeDvC8MBcpUg5N1Cz1GAAGZZH5inQ&s=10"
+    },
+    {
+        name: " Nature is bliss",
+        category: "nature",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHTeR6giIiFLtNSwda0ayseuN0b0MBQ1URpw0jgAkjZw&s=10"
+    },
+    {
+        name: " Nature is bliss",
+        category: "nature",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTejA9qrBkMwYnf5zYEGWmKkQSgH4iKSeTU8sXNzZiwGw&s=10"
+    },
+    {
+        name: "mountain view",
+        category: "mountains",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9-JISE3cjciF5deKUry9fNxTUmha-dyO5qlaSwY-vug&s=10"
+    },
+    {
+        name: "mountain view",
+        category: "mountains",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1fx1nh6PqZRY1j1bJwz-9wdd8PhCENRxPDvi8ikuP4A&s"
+    },
+    {
+        name: "mountain view",
+        category: "mountains",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0ZxQOv6Fjebu3VkeEtdKaBS4hkUozRdcMO1V-RuvxXg&s=10"
+    },
+    {
+        name: "mountain view",
+        category: "mountains",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd6GB52axN3V0j3pX-q1j1be3HV2caAQ6oRj0dH7gc-w&s=10"
+    },
+    {
+        name: "mountain view",
+        category: "mountains",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf95GKxp-bYuHnEyd_3sSR21oAbE_l0AjFwxKGYQ0EUA&s=10"
+    },
+    {
+        name: "mountain view",
+        category: "mountains",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeUsHf186xeFNmE73AMLcqgV5xFGGCsEQgIYU5xHuBkQ&s=10"
+    },
+    {
+        name: "mountain view",
+        category: "mountains",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEw-7JxS1qsrkgdfDJe-RCUYQmGsolcDS4XBuNhSFhLg&s=10"
+    },
+    {
+        name: "Moon and stars",
+        category: "moon",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRB5w5qp4uUOXDVS4NgomPc_7fbniazs99r7G2nrdsCw&s=10"
+    },
+    {
+        name: "Moon and stars",
+        category: "moon",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUgKfu0pKX0LGvusWCg-z3zyk7stSjkteuTerEtnRKvA&s=10"
+    },
+    {
+        name: "Moon and stars",
+        category: "moon",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZK9JhzpJPjg4Hx41oaHR7oOehMKNrm5w48pRmnF0csw&s=10"
+    },
+    {
+        name: "Moon and stars",
+        category: "moon",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkrhf1dlTvCfLpCaqFrJnnl5TrqQqU_QX9fi1y570zdA&s=10"
+    },
+    {
+        name: "Moon and stars",
+        category: "moon",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAThwXFxqAGGyMNUSev8y6uHLP5Z1HnHRxnrkiMbhUdw&s=10"
+    },
+    {
+        name: "Moon and stars",
+        category: "moon",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ49SIBTcT6CH-k8vg8CHpp1q1lrBOw4FldXmS_8luV8w&s=10"
+    },
+    {
+        name: "Moon and stars",
+        category: "moon",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVpqJ3ZXV4fYRHQdwL-iju9D8JLNJEGFKnVUYdeSeOHg&s=10"
+    },
+    {
+        name: "Moon and stars",
+        category: "moon",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnhZhhjcIgqodeypkUsFRDWUE4AhiykkrE3mQsunU1Ow&s=10"
+    },
+    {
+        name: "Flowers in bloom",
+        category: "flower",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA2-DLihuj29d6AfybOogATDohmx1JKFhsol6boswIxw&s=10"
+    },
+    {
+        name: "Flowers in bloom",
+        category: "flower",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR52J711PoIgM8XOKX3oUllAVsTl-4CK69QfCO1wbo1lQ&s=10"
+    },
+    {
+        name: "Flowers in bloom",
+        category: "flower",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2RcO--eLwqcTMquJu6HQGkjx8IPZIJ3IOw4MTEl_uHw&s=10"
+    },
+    {
+        name: "Flowers in bloom",
+        category: "flower",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv0Z1McDbnPRj9Mhp6w5_2UwsZIGnDQq_tqil6i-g8yw&s=10"
+    },
+    {
+        name: "Flowers in bloom",
+        category: "flower",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqqAgctX4iPmf7jSPnTZD0exaITNGZdU8dLxMUMic1Tg&s=10"
+    },
+    {
+        name: "Flowers in bloom",
+        category: "flower",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLaVl3-CGRLP5KehF1jq3dcs16Oc7YAC6nmFj8aMzIvQ&s=10"
+    },
+    {
+        name: "Flowers in bloom",
+        category: "flower",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1_vOp0iv9D_QmyBp95_52gekamWBK4zdSKxRPjBUkiA&s=10"
+    },
+    {
+        name: "Flowers in bloom",
+        category: "flower",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ2vgibZs5mbzYaKv2Yzs-mI14DvmegoSZpiP0rL8HQA&s=10"
+    },
+];
+
+
+
+// ============================================
+// SAVED WALLPAPERS
+// ============================================
+
+const SAVED_STORAGE_KEY = "mayaLoom.savedWallpapers.v1";
+
+let savedWallpapers = loadSavedWallpapers();
+
+function loadSavedWallpapers() {
+    try {
+        const saved = localStorage.getItem(SAVED_STORAGE_KEY);
+        return saved ? JSON.parse(saved) : [];
+    } catch (error) {
+        console.error("Could not load saved wallpapers:", error);
+        return [];
+    }
+}
+
+function persistSavedWallpapers() {
+    localStorage.setItem(
+        SAVED_STORAGE_KEY,
+        JSON.stringify(savedWallpapers)
+    );
+}
+
+
+// ============================================
+// DOM ELEMENTS
+// ============================================
+
+const wallpaperContainer =
+    document.getElementById("wallpaperContainer");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const heading =
+    document.getElementById("heading");
+
+const intro =
+    document.getElementById("intro");
+
+
+// ============================================
+// WALLPAPER DISPLAY
+// ============================================
+
+function displayWallpapers(list) {
+    if (!wallpaperContainer) return;
+
+    wallpaperContainer.innerHTML = "";
+
+    if (!list || list.length === 0) {
+        wallpaperContainer.innerHTML = `
+            <p class="empty-message">
+                No wallpapers found. Try another search!
+            </p>
+        `;
+        return;
+    }
+
+    list.forEach((wallpaper) => {
+        const card = document.createElement("div");
+        card.className = "wallpaper-card";
+
+        const image = document.createElement("img");
+
+        // Support common property names used for image URLs.
+        image.src =
+            wallpaper.image ||
+            wallpaper.url ||
+            wallpaper.src ||
+            "";
+
+        image.alt = wallpaper.name || "Wallpaper";
+        image.loading = "lazy";
+
+        const title = document.createElement("h3");
+        title.textContent = wallpaper.name || "Untitled Wallpaper";
+
+        const saveButton = document.createElement("button");
+
+        const alreadySaved = savedWallpapers.some(
+            (saved) => getWallpaperKey(saved) === getWallpaperKey(wallpaper)
+        );
+
+        saveButton.textContent = alreadySaved
+            ? "♥ Saved"
+            : "♡ Save";
+
+        saveButton.addEventListener("click", () => {
+            saveWallpaper(wallpaper);
+        });
+
+        card.appendChild(image);
+        card.appendChild(title);
+        card.appendChild(saveButton);
+
+        wallpaperContainer.appendChild(card);
+    });
+}
+
+
+// ============================================
+// IDENTIFY WALLPAPERS
+// ============================================
+
+// Use the image URL as the identifier where possible.
+// This prevents wallpapers with the same name from
+// being treated as the same wallpaper.
+
+function getWallpaperKey(wallpaper) {
+    return (
+        wallpaper.image ||
+        wallpaper.url ||
+        wallpaper.src ||
+        wallpaper.name
+    );
+}
+
+
+// ============================================
+// SAVE / UNSAVE WALLPAPERS
+// ============================================
+
+function saveWallpaper(wallpaperOrName) {
+    // Support both saveWallpaper(wallpaperObject)
+    // and the older saveWallpaper("Wallpaper Name") call.
+
+    let wallpaper;
+
+    if (typeof wallpaperOrName === "object") {
+        wallpaper = wallpaperOrName;
+    } else {
+        wallpaper = wallpapers.find(
+            (item) => item.name === wallpaperOrName
+        );
+    }
+
+    if (!wallpaper) {
+        console.error("Wallpaper not found:", wallpaperOrName);
+        return;
+    }
+
+    const key = getWallpaperKey(wallpaper);
+
+    const existingIndex = savedWallpapers.findIndex(
+        (saved) => getWallpaperKey(saved) === key
+    );
+
+    if (existingIndex !== -1) {
+        savedWallpapers.splice(existingIndex, 1);
+    } else {
+        savedWallpapers.push(wallpaper);
+    }
+
+    persistSavedWallpapers();
+
+    // Refresh whichever wallpaper view is currently visible.
+    if (currentView === "saved") {
+        displayWallpapers(savedWallpapers);
+    } else {
+        displayWallpapers(getFilteredWallpapers());
+    }
+}
+
+
+// ============================================
+// SEARCH WALLPAPERS
+// ============================================
+
+let selectedCategory = "all";
+let currentView = "home";
+
+function getFilteredWallpapers() {
+    const query = searchInput
+        ? searchInput.value.trim().toLowerCase()
+        : "";
+
+    return wallpapers.filter((wallpaper) => {
+        const matchesSearch =
+            (wallpaper.name || "").toLowerCase().includes(query);
+
+        const category =
+            (wallpaper.category || "").toLowerCase();
+
+        const matchesCategory =
+            selectedCategory === "all" ||
+            category === selectedCategory;
+
+        return matchesSearch && matchesCategory;
+    });
+}
+
+function searchWallpapers() {
+    currentView = "home";
+    displayWallpapers(getFilteredWallpapers());
+}
+
+if (searchInput) {
+    searchInput.addEventListener("input", searchWallpapers);
+}
+
+
+// ============================================
+// CATEGORY FILTERS
+// ============================================
+
+function filterCategory(category) {
+    selectedCategory = (category || "all").toLowerCase();
+    currentView = "home";
+
+    // Update the active category button.
+    document.querySelectorAll(".seg").forEach((button) => {
+        const buttonCategory = (
+            button.dataset.category ||
+            button.dataset.filter ||
+            button.textContent
+        ).trim().toLowerCase();
+
+        button.classList.toggle(
+            "active",
+            buttonCategory === selectedCategory ||
+            (
+                selectedCategory === "all" &&
+                buttonCategory === "all"
+            )
+        );
+    });
+
+    displayWallpapers(getFilteredWallpapers());
+}
+
+
+// Make these functions available to inline HTML onclick handlers.
+window.filterCategory = filterCategory;
+window.searchWallpapers = searchWallpapers;
+window.saveWallpaper = saveWallpaper;
+
+
+// Connect category buttons without requiring inline onclick.
+document.querySelectorAll(".seg").forEach((button) => {
+    button.addEventListener("click", () => {
+        const category = (
+            button.dataset.category ||
+            button.dataset.filter ||
+            button.textContent
+        ).trim().toLowerCase();
+
+        filterCategory(category);
+    });
+});
+
+
+// ============================================
+// HOME AND SAVED WALLPAPERS
+// ============================================
+
+function showHome() {
+    currentView = "home";
+
+    if (heading) {
+        heading.textContent = "Explore Wallpapers";
+    }
+
+    const homePage = document.getElementById("home-page");
+    const wallpaperPage = document.getElementById("wallpaper-page");
+    const collectionsPage = document.getElementById("collections-page");
+
+    if (collectionsPage) {
+        collectionsPage.hidden = true;
+        collectionsPage.classList.add("hidden");
+    }
+
+    if (homePage) {
+        homePage.hidden = false;
+        homePage.classList.remove("hidden");
+    }
+
+    if (wallpaperPage) {
+        wallpaperPage.hidden = false;
+        wallpaperPage.classList.remove("hidden");
+    }
+
+    displayWallpapers(getFilteredWallpapers());
+}
+
+function showSaved() {
+    currentView = "saved";
+
+    if (heading) {
+        heading.textContent = "Saved Wallpapers";
+    }
+
+    const collectionsPage = document.getElementById("collections-page");
+    const homePage = document.getElementById("home-page");
+    const wallpaperPage = document.getElementById("wallpaper-page");
+
+    if (collectionsPage) {
+        collectionsPage.hidden = true;
+    }
+
+    if (homePage) {
+        homePage.hidden = false;
+    }
+
+    if (wallpaperPage) {
+        wallpaperPage.hidden = false;
+    }
+
+    displayWallpapers(savedWallpapers);
+}
+
+
+// Make navigation functions available to HTML.
+window.showHome = showHome;
+window.showSaved = showSaved;
+
+
+// ============================================
+// COLLECTIONS PAGE NAVIGATION
+// ============================================
+
+function showCollections() {
+    const homePage = document.getElementById("home-page");
+    const wallpaperPage = document.getElementById("wallpaper-page");
+    const collectionsPage = document.getElementById("collections-page");
+
+    if (homePage) {
+        homePage.hidden = true;
+        homePage.classList.add("hidden");
+    }
+
+    if (wallpaperPage) {
+        wallpaperPage.hidden = true;
+        wallpaperPage.classList.add("hidden");
+    }
+
+    if (collectionsPage) {
+        collectionsPage.hidden = false;
+        collectionsPage.classList.remove("hidden");
+    }
+}
+
+window.showCollections = showCollections;
+
+
+// ============================================
+// INTRO ANIMATION
+// ============================================
+
+let introDone = false;
+
+function closeIntro() {
+    if (introDone || !intro) return;
+
+    introDone = true;
+    intro.classList.add("leave");
+
+    setTimeout(() => {
+        if (intro && intro.parentNode) {
+            intro.remove();
+        }
+    }, 1000);
+}
+
+if (intro) {
+    setTimeout(closeIntro, 6000);
+    intro.addEventListener("click", closeIntro);
+}
+
+
+// ============================================
+// RIPPLE EFFECT
+// ============================================
+
+document.addEventListener("click", (event) => {
+    const target = event.target.closest("button");
+
+    if (!target) return;
+
+    const ripple = document.createElement("span");
+    ripple.className = "ripple";
+
+    const rect = target.getBoundingClientRect();
+
+    ripple.style.left = `${event.clientX - rect.left}px`;
+    ripple.style.top = `${event.clientY - rect.top}px`;
+
+    target.appendChild(ripple);
+
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+});
+
+
+// ============================================
+// OPTIONAL SLIDING TABS
+// ============================================
+
+// These elements may not exist in every version of the HTML.
+// Check for them before attaching event listeners.
+
+const mainTabs = document.getElementById("mainTabs");
+
+if (mainTabs) {
+    mainTabs.querySelectorAll(".seg").forEach((button) => {
+        button.addEventListener("click", () => {
+            mainTabs.querySelectorAll(".seg").forEach((item) => {
+                item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+        });
+    });
+}
+
+
+// ============================================
+// INITIALIZE THE GALLERY
+// ============================================
+
+// Display wallpapers when the page loads.
+// This assumes your original wallpapers array is defined above.
+
+if (typeof wallpapers !== "undefined") {
+    displayWallpapers(getFilteredWallpapers());
+}
