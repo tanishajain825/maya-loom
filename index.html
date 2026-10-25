@@ -105,9 +105,15 @@
 
         </section>
     </div>
-    
+
     <!-- Collections interface -->
     <section id="collections-page" hidden>
+
+        <nav class="collections-nav">
+            <button type="button" onclick="showHome()">Home</button>
+            <button type="button" onclick="showSaved()">Saved Wallpapers</button>
+            <button type="button" onclick="showCollections()">Collections</button>
+        </nav>
 
         <main class="main-content">
 
@@ -164,6 +170,58 @@
     </section>
 
 
+    <!-- Add to Collection Modal -->
+    <div id="collection-modal" class="collection-modal" hidden>
+        <div class="collection-modal-content">
+
+            <h2>Add to Collection</h2>
+            <p id="collection-modal-intro">
+                Add this wallpaper to an existing collection or create a new one.
+            </p>
+
+            <!-- Existing collections -->
+            <div id="existing-collections">
+                <label for="collection-select">Choose a collection</label>
+
+                <select id="collection-select">
+                    <option value="">Choose a collection</option>
+                </select>
+            </div>
+
+            <!-- Create a new collection -->
+            <div id="new-collection-section">
+                <button type="button" id="show-create-collection">
+                    + Create New Collection
+                </button>
+
+                <div id="create-collection-form" hidden>
+                    <label for="new-collection-name">
+                        New collection name
+                    </label>
+
+                    <input type="text" id="new-collection-name" placeholder="e.g. Dream Setup" maxlength="60"
+                        autocomplete="off">
+
+                    <button type="button" id="create-and-add-wallpaper">
+                        Create & Add Wallpaper
+                    </button>
+                </div>
+            </div>
+
+            <div class="collection-modal-actions">
+                <button type="button" id="confirm-add-collection">
+                    Add Wallpaper
+                </button>
+
+                <button type="button" id="cancel-add-collection">
+                    Cancel
+                </button>
+            </div>
+
+            <p id="collection-modal-message" role="status"></p>
+
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script src="renderer.js"></script>

@@ -716,3 +716,145 @@ RESPONSIVE LAYOUT
         font-size: clamp(36px, 11vw, 54px);
     }
 }
+
+
+/* Add to Collection Modal */
+
+.collection-modal[hidden] {
+    display: none !important;
+}
+
+.collection-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+}
+
+.collection-modal-content {
+    width: min(400px, 90%);
+    padding: 28px;
+
+    background: #1c1c2b;
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+.collection-modal-content h2 {
+    margin-top: 0;
+}
+
+.collection-modal-content p {
+    color: #c7c7d8;
+}
+
+#collection-select {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+
+    color: white;
+    background: #292940;
+
+    border: 1px solid #555577;
+    border-radius: 8px;
+}
+
+.collection-modal-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.collection-modal-actions button {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#confirm-add-collection {
+    background: #b9a0ff;
+    color: #171326;
+}
+
+#cancel-add-collection {
+    background: #39394d;
+    color: white;
+}
+
+#collection-modal-message {
+    margin-bottom: 0;
+}
+
+/* Create collection inside the Add to Collection modal */
+
+#existing-collections label,
+#create-collection-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #e5e1ff;
+}
+
+#new-collection-section {
+    margin-top: 14px;
+}
+
+#show-create-collection {
+    padding: 8px 0;
+    background: transparent;
+    color: #c4adff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#create-collection-form {
+    margin-top: 12px;
+}
+
+#create-collection-form[hidden],
+#existing-collections[hidden] {
+    display: none !important;
+}
+
+#new-collection-name {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 12px;
+
+    color: white;
+    background: #292940;
+
+    border: 1px solid #555577;
+    border-radius: 8px;
+}
+
+#create-and-add-wallpaper {
+    width: 100%;
+    padding: 11px;
+
+    background: #b9a0ff;
+    color: #171326;
+
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#show-create-collection:hover,
+#confirm-add-collection:hover,
+#create-and-add-wallpaper:hover {
+    opacity: 0.85;
+}

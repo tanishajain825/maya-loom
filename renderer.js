@@ -1,5 +1,10 @@
 const STORAGE_KEY = "mayaLoom.collections.v1";
 
+const existingCollectionsSection = document.getElementById("existing-collections");
+const showCreateCollectionButton = document.getElementById("show-create-collection");
+const createCollectionForm = document.getElementById("create-collection-form");
+const newCollectionNameInput = document.getElementById("new-collection-name");
+const createAndAddButton = document.getElementById("create-and-add-wallpaper");
 const collectionForm = document.getElementById("collection-form");
 const collectionNameInput = document.getElementById("collection-name");
 const collectionGrid = document.getElementById("collection-grid");
@@ -14,6 +19,167 @@ const closeCollectionButton = document.getElementById("close-collection");
 
 let collections = loadCollections();
 let selectedCollectionId = null;
+
+// Elements for the Add to Collection popup.
+const collectionModal = document.getElementById("collection-modal");
+const collectionSelect = document.getElementById("collection-select");
+const confirmAddButton = document.getElementById("confirm-add-collection");
+const cancelAddButton = document.getElementById("cancel-add-collection");
+const modalMessage = document.getElementById("collection-modal-message");
+
+let wallpaperToAdd = null;
+
+
+// Open the popup when the user clicks Add to Collection.
+function addWallpaperToCollection(wallpaper) {
+    wallpaperToAdd = wallpaper;
+
+    collectionSelect.replaceChildren();
+
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Choose a collection";
+
+    collectionSelect.appendChild(placeholder);
+
+    collections.forEach(collection => {
+        const option = document.createElement("option");
+
+        option.value = collection.id;
+        option.textContent = collection.name;
+
+        collectionSelect.appendChild(option);
+    });
+
+    // Reset the modal to its normal state.
+    existingCollectionsSection.hidden = collections.length === 0;
+    confirmAddButton.hidden = collections.length === 0;
+    createCollectionForm.hidden = true;
+    createCollectionForm.hidden = false;
+    showCreateCollectionButton.hidden = false;
+
+    showCreateCollectionButton.textContent = "+ Create New Collection";
+    modalMessage.textContent = collections.length === 0
+        ? "You haven't created any collections yet. Create one below!"
+        : "";
+
+    collectionModal.hidden = false;
+}
+
+window.addWallpaperToCollection = addWallpaperToCollection;
+
+
+// Show the new-collection form inside the modal.
+showCreateCollectionButton.addEventListener("click", () => {
+    createCollectionForm.hidden = false;
+    showCreateCollectionButton.hidden = true;
+
+    newCollectionNameInput.focus();
+});
+
+
+// Add a wallpaper to an existing collection.
+confirmAddButton.addEventListener("click", () => {
+    if (!wallpaperToAdd) {
+        return;
+    }
+
+    const collection = collections.find(
+        item => item.id === collectionSelect.value
+    );
+
+    if (!collection) {
+        modalMessage.textContent = "Please select a collection first.";
+        return;
+    }
+
+    const wallpaperId = window.getWallpaperKey(wallpaperToAdd);
+
+    if (collection.wallpaperIds.includes(wallpaperId)) {
+        modalMessage.textContent =
+            "This wallpaper is already in this collection.";
+        return;
+    }
+
+    collection.wallpaperIds.push(wallpaperId);
+
+    if (!saveCollections()) {
+        collection.wallpaperIds.pop();
+
+        modalMessage.textContent =
+            "Could not save the wallpaper. Please try again.";
+        return;
+    }
+
+    renderCollections();
+
+    collectionModal.hidden = true;
+    wallpaperToAdd = null;
+
+    showMessage(`Wallpaper added to "${collection.name}".`);
+});
+
+
+// Create a collection and add the current wallpaper to it.
+createAndAddButton.addEventListener("click", () => {
+    if (!wallpaperToAdd) {
+        return;
+    }
+
+    const name = newCollectionNameInput.value.trim();
+
+    if (name.length === 0) {
+        modalMessage.textContent = "Please enter a collection name.";
+        return;
+    }
+
+    const alreadyExists = collections.some(collection =>
+        collection.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (alreadyExists) {
+        modalMessage.textContent =
+            "A collection with this name already exists.";
+        return;
+    }
+
+    const newCollection = {
+        id: crypto.randomUUID(),
+        name: name,
+        wallpaperIds: [window.getWallpaperKey(wallpaperToAdd)]
+    };
+
+    collections.push(newCollection);
+
+    if (!saveCollections()) {
+        collections.pop();
+
+        modalMessage.textContent =
+            "Could not save the collection. Please try again.";
+        return;
+    }
+
+    renderCollections();
+
+    createCollectionForm.reset();
+    createCollectionForm.hidden = true;
+    createAndAddButton.hidden = true;
+
+    modalMessage.textContent =
+        `✓ "${name}" was created, and the wallpaper was added successfully!`;
+
+    wallpaperToAdd = null;
+});
+
+
+// Close the popup without saving.
+cancelAddButton.addEventListener("click", () => {
+    collectionModal.hidden = true;
+    wallpaperToAdd = null;
+
+    createCollectionForm.reset();
+    modalMessage.textContent = "";
+});
 
 
 // Load saved collections from localStorage.
@@ -182,8 +348,11 @@ function renderCollections() {
 
 
 // Open a collection.
+// Open a collection and display its wallpapers.
 function openCollection(collectionId) {
-    const collection = collections.find(item => item.id === collectionId);
+    const collection = collections.find(
+        item => item.id === collectionId
+    );
 
     if (!collection) {
         selectedCollectionId = null;
@@ -203,12 +372,89 @@ function openCollection(collectionId) {
 
     collectionWallpapers.replaceChildren();
 
-    const emptyState = document.createElement("p");
-    emptyState.className = "empty-state";
-    emptyState.textContent =
-        "This collection is empty. Wallpaper integration is coming next.";
+    // Retrieve the actual wallpaper objects from the gallery.
+    const wallpapersInCollection = collection.wallpaperIds
+        .map(id =>
+            window.wallpapers.find(
+                wallpaper => window.getWallpaperKey(wallpaper) === id
+            )
+        )
+        .filter(Boolean);
 
-    collectionWallpapers.appendChild(emptyState);
+    if (wallpapersInCollection.length === 0) {
+        const emptyState = document.createElement("p");
+
+        emptyState.className = "empty-state";
+        emptyState.textContent =
+            "This collection is empty. Add wallpapers from the gallery!";
+
+        collectionWallpapers.appendChild(emptyState);
+        return;
+    }
+
+    // Display each wallpaper.
+    wallpapersInCollection.forEach(wallpaper => {
+        const card = document.createElement("article");
+        card.className = "wallpaper-card";
+
+        const image = document.createElement("img");
+
+        image.src =
+            wallpaper.image ||
+            wallpaper.url ||
+            wallpaper.src ||
+            "";
+
+        image.alt = wallpaper.name || "Wallpaper";
+        image.loading = "lazy";
+
+        const title = document.createElement("h3");
+        title.textContent = wallpaper.name || "Untitled Wallpaper";
+
+        const removeButton = document.createElement("button");
+
+        removeButton.type = "button";
+        removeButton.textContent = "Remove from Collection";
+
+        removeButton.addEventListener("click", () => {
+            removeWallpaperFromCollection(
+                collection.id,
+                window.getWallpaperKey(wallpaper)
+            );
+        });
+
+        card.append(image, title, removeButton);
+
+        collectionWallpapers.appendChild(card);
+    });
+}
+
+
+function removeWallpaperFromCollection(collectionId, wallpaperId) {
+    const collection = collections.find(
+        item => item.id === collectionId
+    );
+
+    if (!collection) {
+        return;
+    }
+
+    const index = collection.wallpaperIds.indexOf(wallpaperId);
+
+    if (index === -1) {
+        return;
+    }
+
+    const removedId = collection.wallpaperIds.splice(index, 1)[0];
+
+    if (!saveCollections()) {
+        collection.wallpaperIds.splice(index, 0, removedId);
+        return;
+    }
+
+    renderCollections();
+
+    showMessage("Wallpaper removed from collection.");
 }
 
 

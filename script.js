@@ -294,9 +294,18 @@ function displayWallpapers(list) {
             saveWallpaper(wallpaper);
         });
 
+        const collectionButton = document.createElement("button");
+
+        collectionButton.textContent = "+ Add to Collection";
+
+        collectionButton.addEventListener("click", () => {
+            addWallpaperToCollection(wallpaper);
+        });
+
         card.appendChild(image);
         card.appendChild(title);
         card.appendChild(saveButton);
+        card.appendChild(collectionButton);
 
         wallpaperContainer.appendChild(card);
     });
@@ -438,7 +447,8 @@ function filterCategory(category) {
 window.filterCategory = filterCategory;
 window.searchWallpapers = searchWallpapers;
 window.saveWallpaper = saveWallpaper;
-
+window.wallpapers = wallpapers;
+window.getWallpaperKey = getWallpaperKey;
 
 // Connect category buttons without requiring inline onclick.
 document.querySelectorAll(".seg").forEach((button) => {
