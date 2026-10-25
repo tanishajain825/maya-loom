@@ -101,13 +101,13 @@ let wallpapers = [
         category: "mountains",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd6GB52axN3V0j3pX-q1j1be3HV2caAQ6oRj0dH7gc-w&s=10"
     },
-    { 
+    {
         name: "mountain view",
         category: "mountains",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf95GKxp-bYuHnEyd_3sSR21oAbE_l0AjFwxKGYQ0EUA&s=10"
     },
     {
-          name: "mountain view",
+        name: "mountain view",
         category: "mountains",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeUsHf186xeFNmE73AMLcqgV5xFGGCsEQgIYU5xHuBkQ&s=10"
     },
@@ -121,7 +121,7 @@ let wallpapers = [
         category: "moon",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRB5w5qp4uUOXDVS4NgomPc_7fbniazs99r7G2nrdsCw&s=10"
     },
-     {
+    {
         name: "Moon and stars",
         category: "moon",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUgKfu0pKX0LGvusWCg-z3zyk7stSjkteuTerEtnRKvA&s=10"
@@ -198,193 +198,434 @@ let wallpapers = [
     },
 ];
 
-/* Step 2: Saved wallpapers ki list */
-
-let savedWallpapers = [];
-
-/*slider view*/
-document.querySelectorAll(".category-slider button")
-    .forEach(button => {
-        button.addEventListener("click", function () {
-            document.querySelectorAll(".category-slider button")
-                .forEach(btn => btn.classList.remove("active"));
-
-            this.classList.add("active");
-        });
-    });
 
 
-/* Step 3: Wallpapers screen par dikhana */
+// ============================================
+// SAVED WALLPAPERS
+// ============================================
+
+const SAVED_STORAGE_KEY = "mayaLoom.savedWallpapers.v1";
+
+let savedWallpapers = loadSavedWallpapers();
+
+function loadSavedWallpapers() {
+    try {
+        const saved = localStorage.getItem(SAVED_STORAGE_KEY);
+        return saved ? JSON.parse(saved) : [];
+    } catch (error) {
+        console.error("Could not load saved wallpapers:", error);
+        return [];
+    }
+}
+
+function persistSavedWallpapers() {
+    localStorage.setItem(
+        SAVED_STORAGE_KEY,
+        JSON.stringify(savedWallpapers)
+    );
+}
+
+
+// ============================================
+// DOM ELEMENTS
+// ============================================
+
+const wallpaperContainer =
+    document.getElementById("wallpaperContainer");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const heading =
+    document.getElementById("heading");
+
+const intro =
+    document.getElementById("intro");
+
+
+// ============================================
+// WALLPAPER DISPLAY
+// ============================================
 
 function displayWallpapers(list) {
-    let container = document.getElementById("wallpaperContainer");
+    if (!wallpaperContainer) return;
 
-    // Purane cards remove karna
-    container.innerHTML = "";
+    wallpaperContainer.innerHTML = "";
 
-    // Har wallpaper ka card banana
-    for (let i = 0; i < list.length; i++) {
-        let wallpaper = list[i];
-
-        container.innerHTML += `
-            <div class="wallpaper-card">
-                <img src="${wallpaper.image}" alt="${wallpaper.name}">
-                <h3>${wallpaper.name}</h3>
-                <button onclick="saveWallpaper('${wallpaper.name}')">
-                    Save
-                </button>
-            </div>
+    if (!list || list.length === 0) {
+        wallpaperContainer.innerHTML = `
+            <p class="empty-message">
+                No wallpapers found. Try another search!
+            </p>
         `;
-    }
-
-    if (list.length === 0) {
-        container.innerHTML = "<p>No wallpapers found!</p>";
-    }
-}
-
-/* Step 4: Wallpaper search karna */
-
-function searchWallpapers() {
-    let searchText = document
-        .getElementById("searchInput")
-        .value.toLowerCase();
-
-    let result = wallpapers.filter(function(wallpaper) {
-        return wallpaper.name.toLowerCase().includes(searchText);
-    });
-
-    displayWallpapers(result);
-}
-
-/* Step 5: Category ke according filter karna */
-
-function filterCategory(category) {
-    if (category === "all") {
-        displayWallpapers(wallpapers);
-    } else {
-        let result = wallpapers.filter(function(wallpaper) {
-            return wallpaper.category === category;
-        });
-
-        displayWallpapers(result);
-    }
-}
-
-/* Step 6: Wallpaper save karna */
-
-function saveWallpaper(name) {
-    let wallpaper = wallpapers.find(function(item) {
-        return item.name === name;
-    });
-
-    if (!wallpaper) {
         return;
     }
 
-    let alreadySaved = savedWallpapers.some(function(item) {
-        return item.name === name;
-    });
+    list.forEach((wallpaper) => {
+        const card = document.createElement("div");
+        card.className = "wallpaper-card";
 
-    if (!alreadySaved) {
-        savedWallpapers.push(wallpaper);
-        alert("Wallpaper saved successfully!");
+        const image = document.createElement("img");
+
+        // Support common property names used for image URLs.
+        image.src =
+            wallpaper.image ||
+            wallpaper.url ||
+            wallpaper.src ||
+            "";
+
+        image.alt = wallpaper.name || "Wallpaper";
+        image.loading = "lazy";
+
+        const title = document.createElement("h3");
+        title.textContent = wallpaper.name || "Untitled Wallpaper";
+
+        const saveButton = document.createElement("button");
+
+        const alreadySaved = savedWallpapers.some(
+            (saved) => getWallpaperKey(saved) === getWallpaperKey(wallpaper)
+        );
+
+        saveButton.textContent = alreadySaved
+            ? "♥ Saved"
+            : "♡ Save";
+
+        saveButton.addEventListener("click", () => {
+            saveWallpaper(wallpaper);
+        });
+
+        card.appendChild(image);
+        card.appendChild(title);
+        card.appendChild(saveButton);
+
+        wallpaperContainer.appendChild(card);
+    });
+}
+
+
+// ============================================
+// IDENTIFY WALLPAPERS
+// ============================================
+
+// Use the image URL as the identifier where possible.
+// This prevents wallpapers with the same name from
+// being treated as the same wallpaper.
+
+function getWallpaperKey(wallpaper) {
+    return (
+        wallpaper.image ||
+        wallpaper.url ||
+        wallpaper.src ||
+        wallpaper.name
+    );
+}
+
+
+// ============================================
+// SAVE / UNSAVE WALLPAPERS
+// ============================================
+
+function saveWallpaper(wallpaperOrName) {
+    // Support both saveWallpaper(wallpaperObject)
+    // and the older saveWallpaper("Wallpaper Name") call.
+
+    let wallpaper;
+
+    if (typeof wallpaperOrName === "object") {
+        wallpaper = wallpaperOrName;
     } else {
-        alert("Wallpaper is already saved!");
+        wallpaper = wallpapers.find(
+            (item) => item.name === wallpaperOrName
+        );
+    }
+
+    if (!wallpaper) {
+        console.error("Wallpaper not found:", wallpaperOrName);
+        return;
+    }
+
+    const key = getWallpaperKey(wallpaper);
+
+    const existingIndex = savedWallpapers.findIndex(
+        (saved) => getWallpaperKey(saved) === key
+    );
+
+    if (existingIndex !== -1) {
+        savedWallpapers.splice(existingIndex, 1);
+    } else {
+        savedWallpapers.push(wallpaper);
+    }
+
+    persistSavedWallpapers();
+
+    // Refresh whichever wallpaper view is currently visible.
+    if (currentView === "saved") {
+        displayWallpapers(savedWallpapers);
+    } else {
+        displayWallpapers(getFilteredWallpapers());
     }
 }
 
-/* Step 7: Saved wallpapers dikhana */
+
+// ============================================
+// SEARCH WALLPAPERS
+// ============================================
+
+let selectedCategory = "all";
+let currentView = "home";
+
+function getFilteredWallpapers() {
+    const query = searchInput
+        ? searchInput.value.trim().toLowerCase()
+        : "";
+
+    return wallpapers.filter((wallpaper) => {
+        const matchesSearch =
+            (wallpaper.name || "").toLowerCase().includes(query);
+
+        const category =
+            (wallpaper.category || "").toLowerCase();
+
+        const matchesCategory =
+            selectedCategory === "all" ||
+            category === selectedCategory;
+
+        return matchesSearch && matchesCategory;
+    });
+}
+
+function searchWallpapers() {
+    currentView = "home";
+    displayWallpapers(getFilteredWallpapers());
+}
+
+if (searchInput) {
+    searchInput.addEventListener("input", searchWallpapers);
+}
+
+
+// ============================================
+// CATEGORY FILTERS
+// ============================================
+
+function filterCategory(category) {
+    selectedCategory = (category || "all").toLowerCase();
+    currentView = "home";
+
+    // Update the active category button.
+    document.querySelectorAll(".seg").forEach((button) => {
+        const buttonCategory = (
+            button.dataset.category ||
+            button.dataset.filter ||
+            button.textContent
+        ).trim().toLowerCase();
+
+        button.classList.toggle(
+            "active",
+            buttonCategory === selectedCategory ||
+            (
+                selectedCategory === "all" &&
+                buttonCategory === "all"
+            )
+        );
+    });
+
+    displayWallpapers(getFilteredWallpapers());
+}
+
+
+// Make these functions available to inline HTML onclick handlers.
+window.filterCategory = filterCategory;
+window.searchWallpapers = searchWallpapers;
+window.saveWallpaper = saveWallpaper;
+
+
+// Connect category buttons without requiring inline onclick.
+document.querySelectorAll(".seg").forEach((button) => {
+    button.addEventListener("click", () => {
+        const category = (
+            button.dataset.category ||
+            button.dataset.filter ||
+            button.textContent
+        ).trim().toLowerCase();
+
+        filterCategory(category);
+    });
+});
+
+
+// ============================================
+// HOME AND SAVED WALLPAPERS
+// ============================================
+
+function showHome() {
+    currentView = "home";
+
+    if (heading) {
+        heading.textContent = "Explore Wallpapers";
+    }
+
+    const homePage = document.getElementById("home-page");
+    const wallpaperPage = document.getElementById("wallpaper-page");
+    const collectionsPage = document.getElementById("collections-page");
+
+    if (collectionsPage) {
+        collectionsPage.hidden = true;
+        collectionsPage.classList.add("hidden");
+    }
+
+    if (homePage) {
+        homePage.hidden = false;
+        homePage.classList.remove("hidden");
+    }
+
+    if (wallpaperPage) {
+        wallpaperPage.hidden = false;
+        wallpaperPage.classList.remove("hidden");
+    }
+
+    displayWallpapers(getFilteredWallpapers());
+}
 
 function showSaved() {
-    document.getElementById("heading").innerText =
-        "Saved Wallpapers";
+    currentView = "saved";
+
+    if (heading) {
+        heading.textContent = "Saved Wallpapers";
+    }
+
+    const collectionsPage = document.getElementById("collections-page");
+    const homePage = document.getElementById("home-page");
+    const wallpaperPage = document.getElementById("wallpaper-page");
+
+    if (collectionsPage) {
+        collectionsPage.hidden = true;
+    }
+
+    if (homePage) {
+        homePage.hidden = false;
+    }
+
+    if (wallpaperPage) {
+        wallpaperPage.hidden = false;
+    }
 
     displayWallpapers(savedWallpapers);
 }
 
-/* Step 8: Home page par wapas jaana */
 
-function showHome() {
-    document.getElementById("heading").innerText =
-        "Top Wallpapers";
+// Make navigation functions available to HTML.
+window.showHome = showHome;
+window.showSaved = showSaved;
 
-    displayWallpapers(wallpapers);
+
+// ============================================
+// COLLECTIONS PAGE NAVIGATION
+// ============================================
+
+function showCollections() {
+    const homePage = document.getElementById("home-page");
+    const wallpaperPage = document.getElementById("wallpaper-page");
+    const collectionsPage = document.getElementById("collections-page");
+
+    if (homePage) {
+        homePage.hidden = true;
+        homePage.classList.add("hidden");
+    }
+
+    if (wallpaperPage) {
+        wallpaperPage.hidden = true;
+        wallpaperPage.classList.add("hidden");
+    }
+
+    if (collectionsPage) {
+        collectionsPage.hidden = false;
+        collectionsPage.classList.remove("hidden");
+    }
 }
 
-/* Step 9: Page open hote hi wallpapers show karna */
+window.showCollections = showCollections;
 
-displayWallpapers(wallpapers);
-// ===== 2. INTRO: 6 second baad ya click par band =====
+
+// ============================================
+// INTRO ANIMATION
+// ============================================
+
 let introDone = false;
 
 function closeIntro() {
-  if (introDone) return;
-  introDone = true;
-  intro.classList.add('leave');
-  setTimeout(() => intro.remove(), 1000);
+    if (introDone || !intro) return;
+
+    introDone = true;
+    intro.classList.add("leave");
+
+    setTimeout(() => {
+        if (intro && intro.parentNode) {
+            intro.remove();
+        }
+    }, 1000);
 }
 
-setTimeout(closeIntro, 6000);
-intro.addEventListener('click', closeIntro);
-
-// ===== 3. RIPPLE: button par click karo to lehar niklegi =====
-document.addEventListener('click', (e) => {
-  const btn = e.target.closest('button');
-  if (!btn) return;
-
-  const rect = btn.getBoundingClientRect();
-  const size = Math.max(rect.width, rect.height);
-
-  const ripple = document.createElement('span');
-  ripple.className = 'ripple';
-  ripple.style.width = size + 'px';
-  ripple.style.height = size + 'px';
-  ripple.style.left = e.clientX - rect.left - size / 2 + 'px';
-  ripple.style.top = e.clientY - rect.top - size / 2 + 'px';
-
-  btn.appendChild(ripple);
-  setTimeout(() => ripple.remove(), 700);
-});
-
-// ===== 4. SLIDING SWITCH banana =====
-function setupSliding(container, onChange) {
-  const options = container.querySelectorAll('.seg');
-
-  container.style.setProperty('--count', options.length);
-
-  function select(index) {
-    options.forEach((opt, i) => {
-      opt.classList.toggle('active', i === index);
-    });
-    container.style.setProperty('--index', index);
-  }
-
-  options.forEach((opt, i) => {
-    opt.addEventListener('click', () => {
-      select(i);
-      if (onChange) onChange(opt, i);
-    });
-  });
-
-  select(0);
+if (intro) {
+    setTimeout(closeIntro, 6000);
+    intro.addEventListener("click", closeIntro);
 }
 
-// Home / Saved Wallpapers
-setupSliding(mainTabs, (opt, index) => {
-  if (index === 0) {
-    homeSection.classList.remove('hidden');
-    savedSection.classList.add('hidden');
-  } else {
-    savedSection.classList.remove('hidden');
-    homeSection.classList.add('hidden');
-    showVaultImages();
-  }
+
+// ============================================
+// RIPPLE EFFECT
+// ============================================
+
+document.addEventListener("click", (event) => {
+    const target = event.target.closest("button");
+
+    if (!target) return;
+
+    const ripple = document.createElement("span");
+    ripple.className = "ripple";
+
+    const rect = target.getBoundingClientRect();
+
+    ripple.style.left = `${event.clientX - rect.left}px`;
+    ripple.style.top = `${event.clientY - rect.top}px`;
+
+    target.appendChild(ripple);
+
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
 });
-// B3: Computer se images chunna
-ipcMain.handle('pick-local-images', async () => {
-  const result = await dialog.showOpenDialog({
-    properties: ['openFile', 'multiSelections'],
-    filters: [{ name: 'Images', extensions: ['jpg', 'jpeg', 'png', 'webp', 'bmp'] }],
-  });
-  return result.canceled ? [] : result.filePaths;
-});
+
+
+// ============================================
+// OPTIONAL SLIDING TABS
+// ============================================
+
+// These elements may not exist in every version of the HTML.
+// Check for them before attaching event listeners.
+
+const mainTabs = document.getElementById("mainTabs");
+
+if (mainTabs) {
+    mainTabs.querySelectorAll(".seg").forEach((button) => {
+        button.addEventListener("click", () => {
+            mainTabs.querySelectorAll(".seg").forEach((item) => {
+                item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+        });
+    });
+}
+
+
+// ============================================
+// INITIALIZE THE GALLERY
+// ============================================
+
+// Display wallpapers when the page loads.
+// This assumes your original wallpapers array is defined above.
+
+if (typeof wallpapers !== "undefined") {
+    displayWallpapers(getFilteredWallpapers());
+}

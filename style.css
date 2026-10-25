@@ -1,71 +1,133 @@
-/* Basic website design */
+/* =====================================================
+GLOBAL STYLES
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #010736;
+    --surface: #181820;
+    --surface-hover: #292934;
+    --text: #f4f4f7;
+    --muted: #a99fd6;
+    --accent: #b69cff;
+    --border: #343440;
+    --danger: #ff7777;
+    --glow: #8a5cff;
+    --glow-soft: rgba(138, 92, 255, 0.35);
+}
+
 body {
     margin: 0;
+    min-height: 100vh;
     padding: 20px;
-    background-color: #010736;
-    color: white;
-    font-family: Arial, sans-serif;
-}
-:root {
-  --glow: #8a5cff;
-  --muted: #a99fd6;
+    background: var(--background);
+    color: var(--text);
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
-/* Main heading */
-header {
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: 1px solid rgba(170, 130, 255, 0.9);
+    border-radius: 999px;
+    background: rgba(10, 6, 30, 0.85);
+    color: var(--text);
+    box-shadow: 0 0 8px var(--glow-soft);
+    transition: box-shadow 0.3s, transform 0.2s, background 0.3s;
+}
+
+button:hover {
+    box-shadow: 0 0 18px var(--glow);
+    transform: translateY(-1px);
+}
+
+/* =====================================================
+MAIN WALLPAPER APPLICATION
+===================================================== */
+
+#home-page>header {
+    padding: 20px;
     text-align: center;
-    padding: 20px;
 }
 
-header h1 {
+#home-page>header h1 {
     color: #bd83ff;
     letter-spacing: 3px;
 }
 
-header p {
+#home-page>header p {
     color: #aaaaaa;
 }
 
-/* Navigation buttons */
-nav {
-    text-align: center;
+#home-page>nav {
     margin: 20px;
+    text-align: center;
 }
 
-/* Common button design */
-button {
-    background-color: #8e44ad;
+nav button.active {
+    background: linear-gradient(135deg, #5b34d6, #8a5cff);
     color: white;
-    border: none;
+    box-shadow: 0 0 18px var(--glow);
+}
+
+#wallpaper-page>h2 {
+    margin-top: 28px;
+}
+
+/* Categories */
+
+.category-slider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    overflow-x: auto;
     padding: 10px 15px;
-    margin: 5px;
-    border-radius: 8px;
-    cursor: pointer;
+    white-space: nowrap;
+    scrollbar-width: none;
 }
 
-/* ===== INTRO: gate -> darwaze khulna -> MayaLoom ===== */
-#intro {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at 50% 40%, #12093a 0%, #05030f 70%);
-  cursor: pointer;
-  transition: opacity 1s ease;
+.category-slider::-webkit-scrollbar {
+    display: none;
 }
 
-#intro.leave {
-  opacity: 0;
-  pointer-events: none;
+.category-slider button {
+    flex-shrink: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    color: whitesmoke;
 }
 
-/* Mouse button par le jaane par */
-button:hover {
-    background-color: #b05ce2;
+.category-slider button.active {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
 }
 
-/* Search box layout */
+.category-slider button:hover {
+    color: white;
+}
+
+/* Search */
+
 .search-box {
     display: flex;
     gap: 10px;
@@ -78,286 +140,406 @@ button:hover {
     padding: 12px;
     border: 1px solid #444;
     border-radius: 8px;
-    background-color: #20202a;
+    background: #20202a;
     color: white;
 }
 
-/* Category buttons */
-.categories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 25px;
-}
+/* Wallpaper gallery */
 
-/* Wallpaper grid */
 .wallpaper-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
 }
 
-/* Individual wallpaper card */
 .wallpaper-card {
-    background-color: #181820;
-    border-radius: 12px;
     overflow: hidden;
     padding-bottom: 12px;
+    border-radius: 12px;
+    background: var(--surface);
 }
 
-/* Wallpaper image */
 .wallpaper-card img {
+    display: block;
     width: 100%;
     height: 250px;
     object-fit: cover;
 }
 
-/* Wallpaper title */
 .wallpaper-card h3 {
     padding: 0 12px;
 }
 
-/* Saved wallpaper button */
 .wallpaper-card button {
     margin-left: 12px;
 }
 
-/* Mobile responsive design */
-@media (max-width: 600px) {
-    .wallpaper-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* =====================================================
+COLLECTIONS
+===================================================== */
 
-    .wallpaper-card img {
-        height: 200px;
-    }
-
-    body {
-        padding: 12px;
-    }
-
-    .search-box {
-        gap: 5px;
-    }
-}
-
-.category-slider {
-    display: flex;
-    align-items: center;
-    gap: 35px;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 10px 15px;
-    background: #010736;
-    scrollbar-width: none;
-}
-
-.category-slider::-webkit-scrollbar {
+#collections-page[hidden],
+#collection-details[hidden] {
     display: none;
 }
 
-.category-slider button {
-    flex-shrink: 0;
-    background: transparent;
-    border: none;
-    color: whitesmoke;
-    font-size: 15px;
-    font-weight: 400;
+.main-content {
+    min-width: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 22px;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h2 {
+    margin: 0 0 10px;
+    font-size: 32px;
+}
+
+.page-header p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.create-panel {
+    margin-bottom: 35px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+}
+
+.create-panel h3 {
+    margin-top: 0;
+}
+
+.create-form {
+    display: flex;
+    gap: 12px;
+}
+
+.create-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--background);
+    color: var(--text);
+}
+
+.primary-button {
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #17131f;
+    font-weight: 600;
+}
+
+.primary-button:hover {
+    filter: brightness(1.08);
+}
+
+.status-message {
+    min-height: 20px;
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.status-message.error {
+    color: var(--danger);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    margin: 0;
+}
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 18px;
+}
+
+.collection-card {
+    min-width: 0;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+}
+
+.collection-icon {
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.collection-card h4 {
+    margin: 0 0 8px;
+    overflow-wrap: anywhere;
+}
+
+.collection-card p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.secondary-button,
+.delete-button {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--surface-hover);
+    color: var(--text);
+}
+
+.delete-button {
+    color: var(--danger);
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    padding: 45px 20px;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.collection-details {
+    margin-top: 30px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+}
+
+.collection-details h3 {
+    margin-top: 0;
+}
+
+/* =====================================================
+ANIMATED INTRO
+===================================================== */
+
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 40%, #12093a 0%, #05030f 70%);
     cursor: pointer;
-    padding: 8px 0;
+    transition: opacity 1s ease;
 }
 
-.category-slider button.active {
-    color: white;
-    font-size: 27px;
-    font-weight: bold;
+#intro.leave {
+    opacity: 0;
+    pointer-events: none;
 }
 
-.category-slider button:hover {
-    color: white;
-}
 .stars {
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(2px 2px at 20% 30%, #fff, transparent),
-    radial-gradient(1.5px 1.5px at 70% 20%, #cdbdff, transparent),
-    radial-gradient(2px 2px at 40% 80%, #fff, transparent),
-    radial-gradient(1.5px 1.5px at 85% 65%, #bcd7ff, transparent),
-    radial-gradient(1.5px 1.5px at 10% 70%, #fff, transparent),
-    radial-gradient(2px 2px at 60% 55%, #d8ccff, transparent);
-  animation: twinkle 3s ease-in-out infinite alternate;
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 70% 20%, #cdbdff, transparent),
+        radial-gradient(2px 2px at 40% 80%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 85% 65%, #bcd7ff, transparent),
+        radial-gradient(1.5px 1.5px at 10% 70%, #fff, transparent),
+        radial-gradient(2px 2px at 60% 55%, #d8ccff, transparent);
+    animation: twinkle 3s ease-in-out infinite alternate;
 }
 
 @keyframes twinkle {
-  from { opacity: 0.4; }
-  to   { opacity: 1; }
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .gate-wrap {
-  position: relative;
-  display: grid;
-  place-items: center;
+    position: relative;
+    display: grid;
+    place-items: center;
 }
 
-.gate-wrap > * {
-  grid-area: 1 / 1;
+.gate-wrap>* {
+    grid-area: 1 / 1;
 }
 
 .gate {
-  position: relative;
-width: min(60vh, 85vw);
-  height: 78vh;
-  overflow: hidden;
-  border-radius: 999px 999px 0 0;
-  border: 4px solid rgba(190, 170, 255, 0.8);
-  box-shadow:
-    0 0 40px var(--glow),
-    inset 0 0 40px rgba(138, 92, 255, 0.5);
-  background: #05030f;
-  animation: gateIn 1.4s ease-out both;   /* 1) gate aata hai */
-}
-
-@keyframes gateIn {
-  from { opacity: 0; transform: scale(0.7) translateY(40px); }
-  to   { opacity: 1; transform: none; }
+    position: relative;
+    width: min(60vh, 85vw);
+    height: 78vh;
+    overflow: hidden;
+    border: 4px solid rgba(190, 170, 255, 0.8);
+    border-radius: 999px 999px 0 0;
+    background: #05030f;
+    box-shadow: 0 0 40px var(--glow), inset 0 0 40px var(--glow-soft);
+    animation: gateIn 1.4s ease-out both;
 }
 
 .portal {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
 }
 
 .portal::before {
-  content: '';
-  position: absolute;
-  inset: -50%;
-  background:
-    conic-gradient(from 0deg,
-      #0b1a6b, #5b34d6, #1e5bd6, #2a0f66, #7a4dff, #0b1a6b);
-  filter: blur(30px);
-  animation: spin 14s linear infinite;
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(from 0deg,
+            #0b1a6b,
+            #5b34d6,
+            #1e5bd6,
+            #2a0f66,
+            #7a4dff,
+            #0b1a6b);
+    content: "";
+    filter: blur(30px);
+    animation: spin 14s linear infinite;
 }
 
 .portal::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 60%, transparent 20%, rgba(5, 3, 15, 0.7) 100%);
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 60%, transparent 20%, rgba(5, 3, 15, 0.7) 100%);
+    content: "";
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes gateIn {
+    from {
+        opacity: 0;
+        transform: scale(0.7) translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 .door {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 50%;
-  background: linear-gradient(180deg, #0d0828, #1a1050);
-  border: 1px solid rgba(190, 170, 255, 0.4);
-  animation-duration: 1.6s;
-  animation-delay: 1.5s;             /* 2) gate aane ke baad khulte hain */
-  animation-timing-function: cubic-bezier(0.6, 0, 0.2, 1);
-  animation-fill-mode: forwards;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    border: 1px solid rgba(190, 170, 255, 0.4);
+    background: linear-gradient(180deg, #0d0828, #1a1050);
+    animation-duration: 1.6s;
+    animation-delay: 1.5s;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.2, 1);
+    animation-fill-mode: forwards;
 }
 
 .door.left {
-  left: 0;
-  animation-name: doorLeft;
+    left: 0;
+    animation-name: doorLeft;
 }
 
 .door.right {
-  right: 0;
-  animation-name: doorRight;
+    right: 0;
+    animation-name: doorRight;
 }
 
 @keyframes doorLeft {
-  to { transform: translateX(-101%); }
+    to {
+        transform: translateX(-101%);
+    }
 }
 
 @keyframes doorRight {
-  to { transform: translateX(101%); }
+    to {
+        transform: translateX(101%);
+    }
 }
 
-.logo {
-  text-align: center;
-  z-index: 2;
-  opacity: 0;
-  animation: logoIn 1.8s ease-out 3s forwards;   /* 3) darwaze khulne ke baad logo */
+/* Keep intro logo styles separate from the app heading. */
+
+#intro .logo {
+    z-index: 2;
+    text-align: center;
+    opacity: 0;
+    animation: logoIn 1.8s ease-out 3s forwards;
 }
 
-.logo h2 {
-  margin: 0;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-weight: normal;
-  font-size: clamp(40px, 8vw, 72px);
-  letter-spacing: normal;
-  white-space: nowrap;
-  background: linear-gradient(90deg, #ffffff, #c9b6ff, #7fc4ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 14px rgba(160, 130, 255, 0.9));
+#intro .logo h2 {
+    margin: 0;
+    background: linear-gradient(90deg, #fff, #c9b6ff, #7fc4ff);
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 14px rgba(160, 130, 255, 0.9));
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(40px, 8vw, 72px);
+    font-style: italic;
+    font-weight: normal;
+    letter-spacing: normal;
+    white-space: nowrap;
+    -webkit-background-clip: text;
 }
 
-.logo p {
-  margin: 8px 0 0;
-  letter-spacing: 4px;
-  font-size: 12px;
-  color: var(--muted);
+#intro .logo p {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 4px;
 }
 
 @keyframes logoIn {
-  from { opacity: 0; transform: scale(0.9); filter: blur(10px); }
-  to   { opacity: 1; transform: none; filter: blur(0); }
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+        filter: blur(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+        filter: blur(0);
+    }
 }
 
 .skip-hint {
-  position: absolute;
-  bottom: 18px;
-  font-size: 12px;
-  color: var(--muted);
-  opacity: 0.6;
-}
-/* =====================================================
-   BUTTONS: neon pill + ripple
-   ===================================================== */
-button {
-    position: relative;      /* ripple button ke andar rahe */
-    overflow: hidden;
-    cursor: pointer;
-    margin: 5px;
-    padding: 10px 24px;
-    border-radius: 999px;
-    border: 1px solid rgba(170, 130, 255, 0.9);
-    background: rgba(10, 6, 30, 0.85);
-    color: var(--text);
-    font-size: 14px;
-    box-shadow:
-        0 0 8px var(--glow-soft),
-        inset 0 0 8px rgba(138, 92, 255, 0.35);
-    transition: box-shadow 0.3s, transform 0.2s, background 0.3s;
+    position: absolute;
+    bottom: 18px;
+    color: var(--muted);
+    font-size: 12px;
+    opacity: 0.6;
 }
 
-/* Mouse button par le jaane par */
-button:hover {
-    box-shadow:
-        0 0 18px var(--glow),
-        inset 0 0 12px rgba(138, 92, 255, 0.6);
-    transform: translateY(-1px);
-}
+/* Gate surroundings */
 
-/* Jo tab chuna hua hai (Home / Saved) */
-nav button.active {
-    background: linear-gradient(135deg, #5b34d6, #8a5cff);
-    color: white;
-    box-shadow: 0 0 18px var(--glow);
-}
-/* ---- Pillars (gate ke dono taraf) ---- */
 .pillar {
     position: absolute;
     top: 0;
@@ -370,29 +552,43 @@ nav button.active {
     animation: fadeIn 2s ease 0.6s both;
 }
 
-.p1 { left:  calc(50% - var(--gw) / 2 - 16vw); opacity: 0.4; }
-.p2 { left:  calc(50% - var(--gw) / 2 - 8vw);  opacity: 0.8; }
-.p3 { right: calc(50% - var(--gw) / 2 - 8vw);  opacity: 0.8; }
-.p4 { right: calc(50% - var(--gw) / 2 - 16vw); opacity: 0.4; }
+.p1 {
+    left: 10%;
+    opacity: 0.4;
+}
+
+.p2 {
+    left: 20%;
+    opacity: 0.8;
+}
+
+.p3 {
+    right: 20%;
+    opacity: 0.8;
+}
+
+.p4 {
+    right: 10%;
+    opacity: 0.4;
+}
 
 @keyframes fadeIn {
-    from { opacity: 0; }
+    from {
+        opacity: 0;
+    }
 }
-/* Arch ka sunehra-neela frame */
+
 .arch {
     position: relative;
-    width: var(--gw);
+    width: min(65vh, 90vw);
     height: 74vh;
     padding: 10px;
     border-radius: 999px 999px 0 0;
     background: linear-gradient(180deg, #f0d9a0 0%, #a98be6 14%, #5a45c0 45%, #2a2078 100%);
     box-shadow: 0 0 70px rgba(110, 80, 255, 0.65);
-    animation: gateIn 1.4s ease-out both;      /* 1) gate aata hai */
 }
 
-/* Arch ke upar ka chamakta keystone */
 .arch::before {
-    content: '';
     position: absolute;
     top: -14px;
     left: 50%;
@@ -402,73 +598,121 @@ nav button.active {
     border-radius: 6px;
     background: linear-gradient(135deg, #f6e4b4, #8d6fd6);
     box-shadow: 0 0 18px #cdb6ff;
+    content: "";
 }
-/* Gate ke neeche halki neeli roshni, photo ke horizon glow jaisi */
+
 .arch::after {
-    content: '';
     position: absolute;
-    left: 50%;
     bottom: -14px;
+    left: 50%;
     width: 120%;
     height: 28px;
     transform: translateX(-50%);
     border-radius: 50%;
     background: radial-gradient(ellipse, rgba(140, 170, 255, 0.85), transparent 70%);
+    content: "";
     filter: blur(6px);
 }
 
-@keyframes gateIn {
-    from { opacity: 0; transform: scale(1.2) translateY(40px); }
-    to   { opacity: 1; transform: none; }
-}
-
-/* ---- Neeche chamakta paani ---- */
 .floor {
     position: absolute;
-    left: 0;
     right: 0;
     bottom: 0;
-    height: 10vh;
+    left: 0;
     z-index: 1;
-    background: linear-gradient(180deg,
-        rgba(120, 150, 255, 0.5) 0%,
-        rgba(50, 40, 140, 0.35) 10%,
-        rgba(8, 6, 40, 0.9) 60%,
-        #03020c 100%);
+    height: 10vh;
+    background: linear-gradient(180deg, rgba(120, 150, 255, 0.5), rgba(50, 40, 140, 0.35) 10%, rgba(8, 6, 40, 0.9) 60%, #03020c);
 }
 
-/* Horizon ki chamakti line */
 .floor::before {
-    content: '';
     position: absolute;
     top: 0;
-    left: 10%;
     right: 10%;
+    left: 10%;
     height: 20px;
     background: linear-gradient(90deg, transparent, #9fc2ff, transparent);
     box-shadow: 0 0 26px 6px rgba(120, 150, 255, 0.7);
+    content: "";
 }
 
-/* Failti hui rings */
 .ring {
     position: absolute;
-    left: 50%;
     top: 45%;
+    left: 50%;
     width: 42vw;
     height: 5vh;
+    transform: translate(-50%, -50%) scale(0.3);
     border: 1px solid rgba(170, 190, 255, 0.55);
     border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0.3);
     opacity: 0;
     animation: ringOut 5s ease-out infinite;
 }
 
-.r1 { animation-delay: 2.5s; }
-.r2 { animation-delay: 3.7s; }
-.r3 { animation-delay: 4.9s; }
+.r1 {
+    animation-delay: 2.5s;
+}
+
+.r2 {
+    animation-delay: 3.7s;
+}
+
+.r3 {
+    animation-delay: 4.9s;
+}
 
 @keyframes ringOut {
-    0%   { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
-    30%  { opacity: 0.7; }
-    100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }
+    0% {
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 0;
+    }
+}
+
+/* =====================================================
+RESPONSIVE LAYOUT
+===================================================== */
+
+@media (max-width: 800px) {
+    .wallpaper-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+
+    .wallpaper-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wallpaper-card img {
+        height: 220px;
+    }
+
+    .search-box {
+        gap: 5px;
+    }
+
+    .create-form {
+        flex-direction: column;
+    }
+
+    .main-content {
+        padding: 24px 6px;
+    }
+
+    #intro .logo h2 {
+        font-size: clamp(36px, 11vw, 54px);
+    }
 }
