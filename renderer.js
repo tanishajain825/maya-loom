@@ -26,11 +26,13 @@ const collectionSelect = document.getElementById("collection-select");
 const confirmAddButton = document.getElementById("confirm-add-collection");
 const cancelAddButton = document.getElementById("cancel-add-collection");
 const modalMessage = document.getElementById("collection-modal-message");
+const collectionsListSection = document.getElementById("collections-list-section");
 
 let wallpaperToAdd = null;
 
 
 // Open the popup when the user clicks Add to Collection.
+
 function addWallpaperToCollection(wallpaper) {
     wallpaperToAdd = wallpaper;
 
@@ -51,14 +53,25 @@ function addWallpaperToCollection(wallpaper) {
         collectionSelect.appendChild(option);
     });
 
-    // Reset the modal to its normal state.
+    // Reset the modal every time it opens.
     existingCollectionsSection.hidden = collections.length === 0;
     confirmAddButton.hidden = collections.length === 0;
+
+    confirmAddButton.disabled = false;
+    collectionSelect.disabled = false;
+    collectionSelect.value = "";
+
     createCollectionForm.hidden = true;
-    createCollectionForm.hidden = false;
+    createAndAddButton.hidden = false;
     showCreateCollectionButton.hidden = false;
 
+    newCollectionNameInput.value = "";
+
+    modalMessage.textContent = "";
+    modalMessage.classList.remove("success", "error");
+
     showCreateCollectionButton.textContent = "+ Create New Collection";
+
     modalMessage.textContent = collections.length === 0
         ? "You haven't created any collections yet. Create one below!"
         : "";
@@ -68,36 +81,56 @@ function addWallpaperToCollection(wallpaper) {
 
 window.addWallpaperToCollection = addWallpaperToCollection;
 
-
-// Show the new-collection form inside the modal.
 showCreateCollectionButton.addEventListener("click", () => {
     createCollectionForm.hidden = false;
     showCreateCollectionButton.hidden = true;
 
+
     newCollectionNameInput.focus();
+
+
 });
+
 
 
 // Add a wallpaper to an existing collection.
 confirmAddButton.addEventListener("click", () => {
     if (!wallpaperToAdd) {
+        modalMessage.textContent = "No wallpaper selected.";
+        modalMessage.classList.remove("success");
+        modalMessage.classList.add("error");
+        return;
+    }
+
+    const collectionId = collectionSelect.value;
+
+    if (!collectionId) {
+        modalMessage.textContent = "Please choose a collection first.";
+        modalMessage.classList.remove("success");
+        modalMessage.classList.add("error");
         return;
     }
 
     const collection = collections.find(
-        item => item.id === collectionSelect.value
+        item => item.id === collectionId
     );
 
     if (!collection) {
-        modalMessage.textContent = "Please select a collection first.";
+        modalMessage.textContent = "Collection not found.";
+        modalMessage.classList.remove("success");
+        modalMessage.classList.add("error");
         return;
     }
 
     const wallpaperId = window.getWallpaperKey(wallpaperToAdd);
 
+    // Prevent adding the same wallpaper twice.
     if (collection.wallpaperIds.includes(wallpaperId)) {
         modalMessage.textContent =
-            "This wallpaper is already in this collection.";
+            `This wallpaper is already in "${collection.name}".`;
+
+        modalMessage.classList.remove("error");
+        modalMessage.classList.add("success");
         return;
     }
 
@@ -108,45 +141,63 @@ confirmAddButton.addEventListener("click", () => {
 
         modalMessage.textContent =
             "Could not save the wallpaper. Please try again.";
+
+        modalMessage.classList.remove("success");
+        modalMessage.classList.add("error");
         return;
     }
 
     renderCollections();
 
-    collectionModal.hidden = true;
-    wallpaperToAdd = null;
+    modalMessage.textContent =
+        `✓ Wallpaper added successfully to "${collection.name}"!`;
 
-    showMessage(`Wallpaper added to "${collection.name}".`);
+    modalMessage.classList.remove("error");
+    modalMessage.classList.add("success");
+
+    // Prevent accidental repeated additions.
+    confirmAddButton.disabled = true;
+    collectionSelect.disabled = true;
 });
 
-
-// Create a collection and add the current wallpaper to it.
+// Create a new collection and add the current wallpaper.
 createAndAddButton.addEventListener("click", () => {
     if (!wallpaperToAdd) {
+        modalMessage.textContent = "No wallpaper selected.";
+        modalMessage.classList.remove("success");
+        modalMessage.classList.add("error");
         return;
     }
 
     const name = newCollectionNameInput.value.trim();
 
-    if (name.length === 0) {
+    if (!name) {
         modalMessage.textContent = "Please enter a collection name.";
+        modalMessage.classList.remove("success");
+        modalMessage.classList.add("error");
         return;
     }
 
-    const alreadyExists = collections.some(collection =>
-        collection.name.toLowerCase() === name.toLowerCase()
+    const alreadyExists = collections.some(
+        collection =>
+            collection.name.toLowerCase() === name.toLowerCase()
     );
 
     if (alreadyExists) {
         modalMessage.textContent =
             "A collection with this name already exists.";
+
+        modalMessage.classList.remove("success");
+        modalMessage.classList.add("error");
         return;
     }
 
     const newCollection = {
         id: crypto.randomUUID(),
         name: name,
-        wallpaperIds: [window.getWallpaperKey(wallpaperToAdd)]
+        wallpaperIds: [
+            window.getWallpaperKey(wallpaperToAdd)
+        ]
     };
 
     collections.push(newCollection);
@@ -156,17 +207,28 @@ createAndAddButton.addEventListener("click", () => {
 
         modalMessage.textContent =
             "Could not save the collection. Please try again.";
+
+        modalMessage.classList.remove("success");
+        modalMessage.classList.add("error");
         return;
     }
 
     renderCollections();
 
-    createCollectionForm.reset();
+    // Hide the creation controls after successful creation.
     createCollectionForm.hidden = true;
-    createAndAddButton.hidden = true;
+    showCreateCollectionButton.hidden = true;
+    existingCollectionsSection.hidden = true;
+    confirmAddButton.hidden = true;
 
+    newCollectionNameInput.value = "";
+
+    // Keep the modal open so the success message is visible.
     modalMessage.textContent =
         `✓ "${name}" was created, and the wallpaper was added successfully!`;
+
+    modalMessage.classList.remove("error");
+    modalMessage.classList.add("success");
 
     wallpaperToAdd = null;
 });
@@ -177,7 +239,23 @@ cancelAddButton.addEventListener("click", () => {
     collectionModal.hidden = true;
     wallpaperToAdd = null;
 
-    createCollectionForm.reset();
+    cancelAddButton.addEventListener("click", () => {
+        collectionModal.hidden = true;
+        wallpaperToAdd = null;
+
+
+        createCollectionForm.hidden = true;
+        showCreateCollectionButton.hidden = false;
+        createAndAddButton.hidden = false;
+
+        newCollectionNameInput.value = "";
+
+        modalMessage.textContent = "";
+        modalMessage.classList.remove("success", "error");
+
+
+    });
+
     modalMessage.textContent = "";
 });
 
@@ -357,12 +435,17 @@ function openCollection(collectionId) {
     if (!collection) {
         selectedCollectionId = null;
         collectionDetails.hidden = true;
+        collectionsListSection.hidden = false;
         return;
     }
 
     selectedCollectionId = collectionId;
 
+    // Hide the collection cards and show the selected collection.
+    // Hide the collections list and show the selected collection page.
+    collectionsListSection.hidden = true;
     collectionDetails.hidden = false;
+
     selectedCollectionName.textContent = collection.name;
 
     const count = collection.wallpaperIds.length;
@@ -497,6 +580,7 @@ function deleteCollection(collectionId) {
 function closeCollection() {
     selectedCollectionId = null;
     collectionDetails.hidden = true;
+    collectionsListSection.hidden = false;
 }
 
 

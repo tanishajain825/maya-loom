@@ -141,7 +141,8 @@
 
             </section>
 
-            <section>
+            <section id="collections-list-section">
+
 
                 <div class="section-header">
                     <h3>My Collections</h3>
@@ -150,20 +151,30 @@
 
                 <div id="collection-grid" class="collection-grid"></div>
 
+
             </section>
 
             <section id="collection-details" class="collection-details" hidden>
 
-                <h3 id="selected-collection-name"></h3>
-                <p id="selected-collection-count"></p>
 
-                <div id="collection-wallpapers"></div>
+                <div class="collection-page-header">
 
-                <button id="close-collection" class="secondary-button" type="button">
-                    Close Collection
-                </button>
+                    <button id="close-collection" class="secondary-button" type="button">
+                        ← Back to Collections
+                    </button>
+
+                    <div class="collection-page-heading">
+                        <h2 id="selected-collection-name"></h2>
+                        <p id="selected-collection-count"></p>
+                    </div>
+
+                </div>
+
+                <div id="collection-wallpapers" class="collection-wallpaper-grid"></div>
+
 
             </section>
+
 
         </main>
 
@@ -186,6 +197,10 @@
                 <select id="collection-select">
                     <option value="">Choose a collection</option>
                 </select>
+
+                <button type="button" id="confirm-add-collection">
+                    Add Wallpaper
+                </button>
             </div>
 
             <!-- Create a new collection -->
@@ -209,15 +224,10 @@
             </div>
 
             <div class="collection-modal-actions">
-                <button type="button" id="confirm-add-collection">
-                    Add Wallpaper
-                </button>
-
                 <button type="button" id="cancel-add-collection">
                     Cancel
                 </button>
             </div>
-
             <p id="collection-modal-message" role="status"></p>
 
         </div>

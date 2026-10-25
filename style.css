@@ -858,3 +858,105 @@ RESPONSIVE LAYOUT
 #create-and-add-wallpaper:hover {
     opacity: 0.85;
 }
+
+
+/* Keep Add Wallpaper directly beneath the dropdown. */
+
+#existing-collections #confirm-add-collection {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 11px;
+    border: none;
+    border-radius: 8px;
+    background: #b9a0ff;
+    color: #171326;
+}
+
+/* Space the create-new option beneath Add Wallpaper. */
+
+#new-collection-section {
+    margin-top: 16px;
+}
+
+#show-create-collection {
+    margin-left: 0;
+}
+
+/* Successful collection creation. */
+
+#collection-modal-message.success {
+    color: #8be9b0;
+}
+
+/* Validation and saving errors. */
+
+#collection-modal-message.error {
+    color: #ff7777;
+}
+
+/* Collection detail page */
+.collection-details {
+width: 100%;
+box-sizing: border-box;
+padding: 24px;
+}
+
+.collection-page-header {
+margin-bottom: 28px;
+}
+
+.collection-page-heading {
+margin-top: 24px;
+}
+
+.collection-page-heading h2 {
+font-size: 2rem;
+margin-bottom: 8px;
+}
+
+.collection-page-heading p {
+margin-top: 0;
+opacity: 0.75;
+}
+
+/* Wallpapers displayed side by side */
+.collection-wallpaper-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+gap: 20px;
+width: 100%;
+}
+
+.collection-wallpaper-grid .wallpaper-card {
+min-width: 0;
+overflow: hidden;
+}
+
+.collection-wallpaper-grid .wallpaper-card img {
+width: 100%;
+aspect-ratio: 16 / 10;
+object-fit: cover;
+display: block;
+border-radius: 10px;
+}
+
+.collection-wallpaper-grid .wallpaper-card h3 {
+margin: 12px 0;
+overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+.collection-details {
+padding: 14px;
+}
+
+
+.collection-wallpaper-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+
+}
+
