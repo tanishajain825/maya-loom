@@ -11,6 +11,18 @@
 
 <body>
 
+    <!-- Animated background effects -->
+    <div id="background-effects" aria-hidden="true">
+
+        <!-- Falling petals video -->
+        <video id="petals-video" autoplay muted loop playsinline>
+            <source src="assets/falling-petals.mp4" type="video/mp4">
+        </video>
+
+        <!-- Falling stars -->
+        <div class="falling-stars"></div>
+
+    </div>
 
     <!-- Animated introduction -->
     <div id="intro">
@@ -66,8 +78,26 @@
     <!-- Main wallpaper application -->
     <div id="home-page">
 
+        <!-- Decorative flower on the right side -->
+        <img src="assets/mayaloom-flower2.png" alt="" class="side-flower" aria-hidden="true">
+
+        <!-- Decorative flower on the left side -->
+        <img src="assets/mayaloom-flower2.png" alt="" class="side-flower side-flower-left" aria-hidden="true">
+
         <header>
-            <h1>✦ MAYALOOM</h1>
+            <header class="home-header">
+
+                <h1 class="maya-loom-brand">
+                    <span>MAYA</span>
+
+                    <img src="assets/Firefly-flower.png" alt="" class="brand-flower">
+
+                    <span>LOOM</span>
+                </h1>
+
+                <p>YOUR ONE-STOP DESKTOP WALLPAPER APP</p>
+
+            </header>
             <p>Find your favourite wallpaper!</p>
         </header>
 
@@ -93,6 +123,14 @@
                 <button type="button" class="seg" onclick="filterCategory('mountains')">Mountains</button>
 
                 <button type="button" class="seg" onclick="filterCategory('flower')">Flower</button>
+
+                <button type="button" class="seg" onclick="filterCategory('beach')">Beach</button>
+
+                <button type="button" class="seg" onclick="filterCategory('sunset')">Golden Sunset</button>
+
+                <button type="button" class="seg" onclick="filterCategory('ocean')">Deep Ocean</button>
+
+                <button type="button" class="seg" onclick="filterCategory('rain')">Rainfall</button>
             </div>
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Search wallpapers..." aria-label="Search wallpapers">
