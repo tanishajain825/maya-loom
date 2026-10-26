@@ -204,6 +204,21 @@ let wallpapers = [
     {
         name: "Ocean Dreams",
         category: "beach",
+        image: "https://i.pinimg.com/736x/ff/b2/30/ffb230039e3f78b9dc3552299333092d.jpg"
+    },
+    {
+        name: "Ocean Dreams",
+        category: "beach",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvqHqxWZFCw3s88md__iXwGxcYTpfKRch__K-JLJf4uuqo_r0dm6I2FPo&s=10"
+    },
+    {
+        name: "Ocean Dreams",
+        category: "beach",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLOQXEUd27sNllBQrVGUrJfaIfB3Ff_R-GSoLPUhSMm6J6q6rJ39PUW3s&s=10"
+    },
+    {
+        name: "Ocean Dreams",
+        category: "beach",
         image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
     },
     {
@@ -234,6 +249,21 @@ let wallpapers = [
     {
         name: "Golden Sunset",
         category: "sunset",
+        image: "https://thumbs.dreamstime.com/b/sun-sets-over-field-daisies-sun-low-sky-casting-warm-golden-light-over-vast-field-filled-blooming-314113229.jpg"
+    },
+    {
+        name: "Golden Sunset",
+        category: "sunset",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEi1TcJ4GzLKS4tEJc8RyDHMC-1qX_Xa0NFku1bsI8he6JC2gn-pyzx13&s=10"
+    },
+    {
+        name: "Golden Sunset",
+        category: "sunset",
+        image: "https://img.magnific.com/free-photo/fiery-sunset-mountain-peaks_23-2152014204.jpg?semt=ais_hybrid&w=740&q=80"
+    }, 
+    {
+        name: "Golden Sunset",
+        category: "sunset",
         image: "https://static.vecteezy.com/system/resources/thumbnails/039/072/739/small/sunset-sky-on-the-lake-photo.jpg"
     },
     {
@@ -256,6 +286,21 @@ let wallpapers = [
         category: "ocean",
         image: "https://media.istockphoto.com/id/1179138818/photo/spinner-dolphins-underwater-in-blue-ocean.jpg?s=612x612&w=0&k=20&c=H9nPBihOfU2RZ59RTb3A-iQHlpXBcwgqlv-OsNhDr_w="
     },
+    {
+        name: "Deep Blue Ocean",
+        category: "ocean",
+        image: "https://www.pixelstalk.net/wp-content/uploads/image11/Deep-blue-sea-desktop-4K-wallpaper.jpg"
+    },
+    {
+        name: "Deep Blue Ocean",
+        category: "ocean",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTduj3thy7tXMtAG4xfstJagGT6_16rmOYkvDCEZTlP0FmzjmQlQRf6-vw&s=10"
+    },
+    {
+        name: "Deep Blue Ocean",
+        category: "ocean",
+        image: "https://media.gettyimages.com/id/641983292/video/spotted-jellyfish.jpg?s=640x640&k=20&c=krnjqHHUwUQyeKiLFCa3X5_tnFwR5uLq0ZAaLqx6XUk="
+    }, 
     {
         name: "Deep Blue Ocean",
         category: "ocean",
@@ -315,6 +360,21 @@ let wallpapers = [
         name: "Aesthetic Rainfall",
         category: "rain",
         image: "https://wallpaperaccess.com/full/2950467.jpg"
+    },
+    {
+        name: "Aesthetic Rainfall",
+        category: "rain",
+        image: "https://i.pinimg.com/736x/c3/e2/00/c3e200c5dcd3ab8d07e93d24662fe1c6.jpg"
+    },
+    {
+        name: "Aesthetic Rainfall",
+        category: "rain",
+        image: "https://png.pngtree.com/thumb_back/fh260/background/20240715/pngtree-a-rainy-day-with-flowers-and-an-umbrella-hard-image_15997921.jpg"
+    },
+    {
+        name: "Aesthetic Rainfall",
+        category: "rain",
+        image: "https://t4.ftcdn.net/jpg/14/03/48/49/360_F_1403484970_QLsf1twjO6XHMUmxpk2guOQKb0Qec3DG.jpg"
     },
 ];
 
