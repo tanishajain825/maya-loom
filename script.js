@@ -381,9 +381,24 @@ function displayWallpapers(list) {
         return;
     }
 
+
     list.forEach((wallpaper) => {
         const card = document.createElement("div");
         card.className = "wallpaper-card";
+        card.style.display = "flex";
+        card.style.flexDirection = "column";
+
+        card.style.cursor = "pointer";
+
+card.addEventListener("click", () => {
+    document.querySelectorAll(".wallpaper-card").forEach((item) => {
+        item.style.border = "";
+    });
+
+    card.style.border = "3px solid violet";
+
+    window.selectedWallpaper = wallpaper;
+});
 
         const image = document.createElement("img");
 
@@ -416,19 +431,59 @@ function displayWallpapers(list) {
         saveButton.addEventListener("click", () => {
             saveWallpaper(wallpaper);
         });
-
         const collectionButton = document.createElement("button");
 
         collectionButton.textContent = "+ Add to Collection";
 
-        collectionButton.addEventListener("click", () => {
+        collectionButton.addEventListener("click", (event) => {
+            event.stopPropagation();
             addWallpaperToCollection(wallpaper);
+        });
+
+        const applyButton = document.createElement("button");
+        applyButton.textContent = "Apply to Desktop";
+
+        applyButton.addEventListener("click", async (event) => {
+            event.stopPropagation();
+
+            try {
+                showWallpaperToast("Applying your wallpaper...", "loading");
+
+                const imagePath = wallpaper.image || wallpaper.url || wallpaper.src;
+
+                if (!imagePath) {
+                    showWallpaperToast("Wallpaper image not found.", "error");
+                    return;
+                }
+
+                const result = await window.mayaAPI.applyWallpaper(imagePath);
+
+                console.log("Wallpaper API result:", result);
+
+                if (result && result.success === false) {
+                    showWallpaperToast("Could not apply wallpaper.", "error");
+                } else {
+                    showWallpaperToast("Wallpaper applied successfully!", "success");
+                }
+            } catch (error) {
+                console.error("Wallpaper error:", error);
+                showWallpaperToast("Failed to apply wallpaper.", "error");
+            }
         });
 
         card.appendChild(image);
         card.appendChild(title);
-        card.appendChild(saveButton);
-        card.appendChild(collectionButton);
+
+        const buttonContainer = document.createElement("div");
+        buttonContainer.style.display = "flex";
+        buttonContainer.style.gap = "8px";
+        buttonContainer.style.marginTop = "10px";
+
+        buttonContainer.appendChild(saveButton);
+        buttonContainer.appendChild(collectionButton);
+        buttonContainer.appendChild(applyButton);
+
+        card.appendChild(buttonContainer);
 
         wallpaperContainer.appendChild(card);
     });
@@ -694,7 +749,7 @@ function closeIntro() {
 }
 
 if (intro) {
-    setTimeout(closeIntro, 6000);
+    setTimeout(closeIntro, 11000);
     intro.addEventListener("click", closeIntro);
 }
 

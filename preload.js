@@ -1,6 +1,8 @@
 
-const { contextBridge } = require("electron");
+const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("mayaAPI", {
-  getMessage: () => "Maya Loom is running!"
+  getMessage: () => "Maya Loom is running!",
+  applyWallpaper: (imagePath) =>
+  ipcRenderer.invoke("apply-wallpaper", imagePath)
 });
