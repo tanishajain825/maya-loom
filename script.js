@@ -261,9 +261,24 @@ function displayWallpapers(list) {
         return;
     }
 
+
     list.forEach((wallpaper) => {
         const card = document.createElement("div");
         card.className = "wallpaper-card";
+        card.style.display = "flex";
+        card.style.flexDirection = "column";
+
+        card.style.cursor = "pointer";
+
+card.addEventListener("click", () => {
+    document.querySelectorAll(".wallpaper-card").forEach((item) => {
+        item.style.border = "";
+    });
+
+    card.style.border = "3px solid violet";
+
+    window.selectedWallpaper = wallpaper;
+});
 
         const image = document.createElement("img");
 
@@ -294,9 +309,118 @@ function displayWallpapers(list) {
             saveWallpaper(wallpaper);
         });
 
+        let toastTimer;
+
+function showWallpaperToast(message, type) {
+  let toast = document.getElementById("applyStatus");
+
+  // Create the notification if it does not exist
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "applyStatus";
+    toast.className = "wallpaper-toast";
+    toast.setAttribute("role", "status");
+
+    toast.innerHTML = `
+      <span id="toastIcon">✨</span>
+      <span id="toastMessage"></span>
+    `;
+
+    document.body.appendChild(toast);
+  }
+
+  const icon = toast.querySelector("#toastIcon");
+  const text = toast.querySelector("#toastMessage");
+
+  if (!icon || !text) {
+    console.error("Notification elements could not be created.");
+    return;
+  }
+
+  clearTimeout(toastTimer);
+
+  toast.className = "wallpaper-toast";
+  icon.className = "";
+  text.textContent = message;
+
+  if (type === "loading") {
+    icon.textContent = "✨";
+    icon.className = "loading";
+  } else if (type === "success") {
+    icon.textContent = "✓";
+    toast.classList.add("success");
+  } else {
+    icon.textContent = "✕";
+    toast.classList.add("error");
+  }
+
+  toast.classList.add("show");
+}
+
+        const applyButton = document.createElement("button");
+applyButton.textContent = "Apply to Desktop";
+
+applyButton.addEventListener("click", async (event) => {
+  event.stopPropagation();
+
+  // Find or create the notification
+  let toast = document.getElementById("applyStatus");
+
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "applyStatus";
+    toast.className = "wallpaper-toast";
+    toast.setAttribute("role", "status");
+    document.body.appendChild(toast);
+  }
+
+  function updateStatus(message, type) {
+    toast.textContent = message;
+    toast.className = "wallpaper-toast show";
+
+    if (type === "success") {
+      toast.classList.add("success");
+    } else if (type === "error") {
+      toast.classList.add("error");
+    }
+  }
+
+  try {
+    updateStatus("Applying your wallpaper...", "loading");
+
+    const imagePath = wallpaper.image || wallpaper.url || wallpaper.src;
+
+    if (!imagePath) {
+      updateStatus("Wallpaper image not found.", "error");
+      return;
+    }
+
+    const result = await window.mayaAPI.applyWallpaper(imagePath);
+
+    console.log("Wallpaper API result:", result);
+
+    if (result && result.success === false) {
+      updateStatus("Could not apply wallpaper.", "error");
+    } else {
+      updateStatus("Wallpaper applied successfully!", "success");
+    }
+  } catch (error) {
+    console.error("Wallpaper error:", error);
+    updateStatus("Failed to apply wallpaper.", "error");
+  }
+});
+
+
+
         card.appendChild(image);
         card.appendChild(title);
-        card.appendChild(saveButton);
+        const buttonContainer = document.createElement("div");
+        buttonContainer.style.display = "flex";
+        buttonContainer.style.gap = "8px";
+        buttonContainer.style.marginTop = "10px";
+        buttonContainer.appendChild(saveButton);
+        buttonContainer.appendChild(applyButton);
+        card.appendChild(buttonContainer);
 
         wallpaperContainer.appendChild(card);
     });
@@ -567,7 +691,7 @@ function closeIntro() {
 }
 
 if (intro) {
-    setTimeout(closeIntro, 6000);
+    setTimeout(closeIntro, 11000);
     intro.addEventListener("click", closeIntro);
 }
 
