@@ -14,6 +14,18 @@
 
 <body>
 
+    <!-- Animated background effects -->
+    <div id="background-effects" aria-hidden="true">
+
+        <!-- Falling petals video -->
+        <video id="petals-video" autoplay muted loop playsinline>
+            <source src="assets/falling-petals.mp4" type="video/mp4">
+        </video>
+
+        <!-- Falling stars -->
+        <div class="falling-stars"></div>
+
+    </div>
 
     <!-- Animated introduction -->
     <div id="intro">
@@ -87,8 +99,26 @@
     <!-- Main wallpaper application -->
     <div id="home-page">
 
+        <!-- Decorative flower on the right side -->
+        <img src="assets/mayaloom-flower2.png" alt="" class="side-flower" aria-hidden="true">
+
+        <!-- Decorative flower on the left side -->
+        <img src="assets/mayaloom-flower2.png" alt="" class="side-flower side-flower-left" aria-hidden="true">
+
         <header>
-            <h1>✦ MAYALOOM</h1>
+            <header class="home-header">
+
+                <h1 class="maya-loom-brand">
+                    <span>MAYA</span>
+
+                    <img src="assets/Firefly-flower.png" alt="" class="brand-flower">
+
+                    <span>LOOM</span>
+                </h1>
+
+                <p>YOUR ONE-STOP DESKTOP WALLPAPER APP</p>
+
+            </header>
             <p>Find your favourite wallpaper!</p>
         </header>
 
@@ -114,6 +144,14 @@
                 <button type="button" class="seg" onclick="filterCategory('mountains')">Mountains</button>
 
                 <button type="button" class="seg" onclick="filterCategory('flower')">Flower</button>
+
+                <button type="button" class="seg" onclick="filterCategory('beach')">Beach</button>
+
+                <button type="button" class="seg" onclick="filterCategory('sunset')">Golden Sunset</button>
+
+                <button type="button" class="seg" onclick="filterCategory('ocean')">Deep Ocean</button>
+
+                <button type="button" class="seg" onclick="filterCategory('rain')">Rainfall</button>
             </div>
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Search wallpapers..." aria-label="Search wallpapers">
@@ -131,9 +169,15 @@
 
         </section>
     </div>
-    
+
     <!-- Collections interface -->
     <section id="collections-page" hidden>
+
+        <nav class="collections-nav">
+            <button type="button" onclick="showHome()">Home</button>
+            <button type="button" onclick="showSaved()">Saved Wallpapers</button>
+            <button type="button" onclick="showCollections()">Collections</button>
+        </nav>
 
         <main class="main-content">
 
@@ -161,7 +205,8 @@
 
             </section>
 
-            <section>
+            <section id="collections-list-section">
+
 
                 <div class="section-header">
                     <h3>My Collections</h3>
@@ -170,26 +215,87 @@
 
                 <div id="collection-grid" class="collection-grid"></div>
 
+
             </section>
 
             <section id="collection-details" class="collection-details" hidden>
 
-                <h3 id="selected-collection-name"></h3>
-                <p id="selected-collection-count"></p>
 
-                <div id="collection-wallpapers"></div>
+                <div class="collection-page-header">
 
-                <button id="close-collection" class="secondary-button" type="button">
-                    Close Collection
-                </button>
+                    <button id="close-collection" class="secondary-button" type="button">
+                        ← Back to Collections
+                    </button>
+
+                    <div class="collection-page-heading">
+                        <h2 id="selected-collection-name"></h2>
+                        <p id="selected-collection-count"></p>
+                    </div>
+
+                </div>
+
+                <div id="collection-wallpapers" class="collection-wallpaper-grid"></div>
+
 
             </section>
+
 
         </main>
 
     </section>
 
 
+    <!-- Add to Collection Modal -->
+    <div id="collection-modal" class="collection-modal" hidden>
+        <div class="collection-modal-content">
+
+            <h2>Add to Collection</h2>
+            <p id="collection-modal-intro">
+                Add this wallpaper to an existing collection or create a new one.
+            </p>
+
+            <!-- Existing collections -->
+            <div id="existing-collections">
+                <label for="collection-select">Choose a collection</label>
+
+                <select id="collection-select">
+                    <option value="">Choose a collection</option>
+                </select>
+
+                <button type="button" id="confirm-add-collection">
+                    Add Wallpaper
+                </button>
+            </div>
+
+            <!-- Create a new collection -->
+            <div id="new-collection-section">
+                <button type="button" id="show-create-collection">
+                    + Create New Collection
+                </button>
+
+                <div id="create-collection-form" hidden>
+                    <label for="new-collection-name">
+                        New collection name
+                    </label>
+
+                    <input type="text" id="new-collection-name" placeholder="e.g. Dream Setup" maxlength="60"
+                        autocomplete="off">
+
+                    <button type="button" id="create-and-add-wallpaper">
+                        Create & Add Wallpaper
+                    </button>
+                </div>
+            </div>
+
+            <div class="collection-modal-actions">
+                <button type="button" id="cancel-add-collection">
+                    Cancel
+                </button>
+            </div>
+            <p id="collection-modal-message" role="status"></p>
+
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script src="renderer.js"></script>

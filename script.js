@@ -82,37 +82,37 @@ let wallpapers = [
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTejA9qrBkMwYnf5zYEGWmKkQSgH4iKSeTU8sXNzZiwGw&s=10"
     },
     {
-        name: "mountain view",
+        name: "Mountain view",
         category: "mountains",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9-JISE3cjciF5deKUry9fNxTUmha-dyO5qlaSwY-vug&s=10"
     },
     {
-        name: "mountain view",
+        name: "Mountain view",
         category: "mountains",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1fx1nh6PqZRY1j1bJwz-9wdd8PhCENRxPDvi8ikuP4A&s"
     },
     {
-        name: "mountain view",
+        name: "Mountain view",
         category: "mountains",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0ZxQOv6Fjebu3VkeEtdKaBS4hkUozRdcMO1V-RuvxXg&s=10"
     },
     {
-        name: "mountain view",
+        name: "Mountain view",
         category: "mountains",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd6GB52axN3V0j3pX-q1j1be3HV2caAQ6oRj0dH7gc-w&s=10"
     },
     {
-        name: "mountain view",
+        name: "Mountain view",
         category: "mountains",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf95GKxp-bYuHnEyd_3sSR21oAbE_l0AjFwxKGYQ0EUA&s=10"
     },
     {
-        name: "mountain view",
+        name: "Mountain view",
         category: "mountains",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeUsHf186xeFNmE73AMLcqgV5xFGGCsEQgIYU5xHuBkQ&s=10"
     },
     {
-        name: "mountain view",
+        name: "Mountain view",
         category: "mountains",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEw-7JxS1qsrkgdfDJe-RCUYQmGsolcDS4XBuNhSFhLg&s=10"
     },
@@ -195,6 +195,126 @@ let wallpapers = [
         name: "Flowers in bloom",
         category: "flower",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ2vgibZs5mbzYaKv2Yzs-mI14DvmegoSZpiP0rL8HQA&s=10"
+    },
+    {
+        name: "Ocean Dreams",
+        category: "beach",
+        image: "https://t4.ftcdn.net/jpg/10/09/70/43/360_F_1009704358_uqNIVY8XZMPMm50Lb1sS6vG3ofN8IVYI.jpg"
+    },
+    {
+        name: "Ocean Dreams",
+        category: "beach",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+    },
+    {
+        name: "Ocean Dreams",
+        category: "beach",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR10a5uvBByZ_fXllMKrc_8KPbWV6MIOmJ3wJFYB8EOAm-rFOUNfxIUZ9A&s=10"
+    },
+    {
+        name: "Ocean Dreams",
+        category: "beach",
+        image: "https://cdn.pixabay.com/photo/2022/09/06/14/40/beach-7436794_640.jpg"
+    },
+    {
+        name: "Ocean Dreams",
+        category: "beach",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMHKZinbW6ukDKuPUhmLKlZFcYP9Z8d0u6WQX3cijmmob_NIWeW6PvWigp&s=10"
+    },
+    {
+        name: "Ocean Dreams",
+        category: "beach",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8AmLH0-WDaItF8CYxVZaE4bbHVDXKStEcPKdaXXyiXHRH59MvgBLpDU0&s=10"
+    },
+    {
+        name: "Golden Sunset",
+        category: "sunset",
+        image: "https://images.pexels.com/photos/29833846/pexels-photo-29833846/free-photo-of-golden-sunset-over-serene-beach-landscape.jpeg?auto=compress&w=1260&h=750&dpr=1"
+    },
+    {
+        name: "Golden Sunset",
+        category: "sunset",
+        image: "https://static.vecteezy.com/system/resources/thumbnails/039/072/739/small/sunset-sky-on-the-lake-photo.jpg"
+    },
+    {
+        name: "Golden Sunset",
+        category: "sunset",
+        image: "https://png.pngtree.com/thumb_back/fh260/background/20251103/pngtree-a-breathtaking-golden-sunset-casting-warm-glow-over-endless-rows-of-image_20219189.webp"
+    },
+    {
+        name: "Golden Sunset",
+        category: "sunset",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRio_0pP6dGKpvXxkChbksF53BKXQN5vIg9rFketAcGv4S-bJMsGghkDG_s&s=10"
+    },
+    {
+        name: "Golden Sunset",
+        category: "sunset",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSyR9vd93zIa9d5Ymwy_gPb4W5XBf4-Ukww0E6JwNZzMWY-6OOppxh7Ca&s=10"
+    },
+    {
+        name: "Deep Blue Ocean",
+        category: "ocean",
+        image: "https://media.istockphoto.com/id/1179138818/photo/spinner-dolphins-underwater-in-blue-ocean.jpg?s=612x612&w=0&k=20&c=H9nPBihOfU2RZ59RTb3A-iQHlpXBcwgqlv-OsNhDr_w="
+    },
+    {
+        name: "Deep Blue Ocean",
+        category: "ocean",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpVinUGTB5aaBOwTg8P6C-UEFihvMUgZ5JlCo8oceBE5qLvgYJ2NkQ3XNJ&s=10"
+    },
+    {
+        name: "Deep Blue Ocean",
+        category: "ocean",
+        image: "https://i.pinimg.com/736x/af/d3/cf/afd3cfd14bbe4bad45bb64325e9c0fea.jpg"
+    },
+    {
+        name: "Deep Blue Ocean",
+        category: "ocean",
+        image: "https://4kwallpapers.com/images/walls/thumbs_2t/9638.jpg"
+    },
+    {
+        name: "Deep Blue Ocean",
+        category: "ocean",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPZrBHLg4PpRILV6pvQjsGphF29Ys3BG9AQrqTuC8MkmIAlC5lZls92w4&s=10"
+    },
+    {
+        name: "Deep Blue Ocean",
+        category: "ocean",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi_gGIlm9xEYq9nhw5IxPUDz-ZptnwCMMkR17BYW4-UhTELpB3MkxAE7w&s=10"
+    },
+    {
+        name: "Aesthetic Rainfall",
+        category: "rain",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTPBWJJXCrEu5TJYBtsLGrEth_TPThr82qu4SAlOt7ABxgOOGIQhcAxwI&s=10"
+    },
+    {
+        name: "Aesthetic Rainfall",
+        category: "rain",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk5IcQtZPX4bMsMkFnyeZlgXetvPEb3qcAzHt11lPLeLR9q0A6n00poO0N&s=10"
+    },
+    {
+        name: "Aesthetic Rainfall",
+        category: "rain",
+        image: "https://wallpaperaccess.com/full/134828.jpg"
+    },
+    {
+        name: "Aesthetic Rainfall",
+        category: "rain",
+        image: "https://t4.ftcdn.net/jpg/08/39/31/27/360_F_839312720_5nyVKmkpovvGxA4r9oTl4D6zeLOFurWF.jpg"
+    },
+    {
+        name: "Aesthetic Rainfall",
+        category: "rain",
+        image: "https://t3.ftcdn.net/jpg/07/68/44/46/360_F_768444677_UcbjPoC6HS5yEXyZjx0DwiJ2tAwL2flo.jpg"
+    },
+    {
+        name: "Aesthetic Rainfall",
+        category: "rain",
+        image: "https://images7.alphacoders.com/345/345392.jpg"
+    },
+    {
+        name: "Aesthetic Rainfall",
+        category: "rain",
+        image: "https://wallpaperaccess.com/full/2950467.jpg"
     },
 ];
 
@@ -291,6 +411,9 @@ card.addEventListener("click", () => {
 
         image.alt = wallpaper.name || "Wallpaper";
         image.loading = "lazy";
+        image.addEventListener("error", () => {
+            console.error("Failed to load wallpaper:", image.src);
+        });
 
         const title = document.createElement("h3");
         title.textContent = wallpaper.name || "Untitled Wallpaper";
@@ -308,118 +431,58 @@ card.addEventListener("click", () => {
         saveButton.addEventListener("click", () => {
             saveWallpaper(wallpaper);
         });
+        const collectionButton = document.createElement("button");
 
-        let toastTimer;
+        collectionButton.textContent = "+ Add to Collection";
 
-function showWallpaperToast(message, type) {
-  let toast = document.getElementById("applyStatus");
-
-  // Create the notification if it does not exist
-  if (!toast) {
-    toast = document.createElement("div");
-    toast.id = "applyStatus";
-    toast.className = "wallpaper-toast";
-    toast.setAttribute("role", "status");
-
-    toast.innerHTML = `
-      <span id="toastIcon">✨</span>
-      <span id="toastMessage"></span>
-    `;
-
-    document.body.appendChild(toast);
-  }
-
-  const icon = toast.querySelector("#toastIcon");
-  const text = toast.querySelector("#toastMessage");
-
-  if (!icon || !text) {
-    console.error("Notification elements could not be created.");
-    return;
-  }
-
-  clearTimeout(toastTimer);
-
-  toast.className = "wallpaper-toast";
-  icon.className = "";
-  text.textContent = message;
-
-  if (type === "loading") {
-    icon.textContent = "✨";
-    icon.className = "loading";
-  } else if (type === "success") {
-    icon.textContent = "✓";
-    toast.classList.add("success");
-  } else {
-    icon.textContent = "✕";
-    toast.classList.add("error");
-  }
-
-  toast.classList.add("show");
-}
+        collectionButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            addWallpaperToCollection(wallpaper);
+        });
 
         const applyButton = document.createElement("button");
-applyButton.textContent = "Apply to Desktop";
+        applyButton.textContent = "Apply to Desktop";
 
-applyButton.addEventListener("click", async (event) => {
-  event.stopPropagation();
+        applyButton.addEventListener("click", async (event) => {
+            event.stopPropagation();
 
-  // Find or create the notification
-  let toast = document.getElementById("applyStatus");
+            try {
+                showWallpaperToast("Applying your wallpaper...", "loading");
 
-  if (!toast) {
-    toast = document.createElement("div");
-    toast.id = "applyStatus";
-    toast.className = "wallpaper-toast";
-    toast.setAttribute("role", "status");
-    document.body.appendChild(toast);
-  }
+                const imagePath = wallpaper.image || wallpaper.url || wallpaper.src;
 
-  function updateStatus(message, type) {
-    toast.textContent = message;
-    toast.className = "wallpaper-toast show";
+                if (!imagePath) {
+                    showWallpaperToast("Wallpaper image not found.", "error");
+                    return;
+                }
 
-    if (type === "success") {
-      toast.classList.add("success");
-    } else if (type === "error") {
-      toast.classList.add("error");
-    }
-  }
+                const result = await window.mayaAPI.applyWallpaper(imagePath);
 
-  try {
-    updateStatus("Applying your wallpaper...", "loading");
+                console.log("Wallpaper API result:", result);
 
-    const imagePath = wallpaper.image || wallpaper.url || wallpaper.src;
-
-    if (!imagePath) {
-      updateStatus("Wallpaper image not found.", "error");
-      return;
-    }
-
-    const result = await window.mayaAPI.applyWallpaper(imagePath);
-
-    console.log("Wallpaper API result:", result);
-
-    if (result && result.success === false) {
-      updateStatus("Could not apply wallpaper.", "error");
-    } else {
-      updateStatus("Wallpaper applied successfully!", "success");
-    }
-  } catch (error) {
-    console.error("Wallpaper error:", error);
-    updateStatus("Failed to apply wallpaper.", "error");
-  }
-});
-
-
+                if (result && result.success === false) {
+                    showWallpaperToast("Could not apply wallpaper.", "error");
+                } else {
+                    showWallpaperToast("Wallpaper applied successfully!", "success");
+                }
+            } catch (error) {
+                console.error("Wallpaper error:", error);
+                showWallpaperToast("Failed to apply wallpaper.", "error");
+            }
+        });
 
         card.appendChild(image);
         card.appendChild(title);
+
         const buttonContainer = document.createElement("div");
         buttonContainer.style.display = "flex";
         buttonContainer.style.gap = "8px";
         buttonContainer.style.marginTop = "10px";
+
         buttonContainer.appendChild(saveButton);
+        buttonContainer.appendChild(collectionButton);
         buttonContainer.appendChild(applyButton);
+
         card.appendChild(buttonContainer);
 
         wallpaperContainer.appendChild(card);
@@ -562,21 +625,16 @@ function filterCategory(category) {
 window.filterCategory = filterCategory;
 window.searchWallpapers = searchWallpapers;
 window.saveWallpaper = saveWallpaper;
-
+window.wallpapers = wallpapers;
+window.getWallpaperKey = getWallpaperKey;
 
 // Connect category buttons without requiring inline onclick.
 document.querySelectorAll(".seg").forEach((button) => {
     button.addEventListener("click", () => {
-        const category = (
-            button.dataset.category ||
-            button.dataset.filter ||
-            button.textContent
-        ).trim().toLowerCase();
-
-        filterCategory(category);
+        // The inline onclick handler already calls filterCategory().
+        // Do not call it a second time using the button's display text.
     });
 });
-
 
 // ============================================
 // HOME AND SAVED WALLPAPERS
@@ -742,7 +800,21 @@ if (mainTabs) {
     });
 }
 
+console.log("Beach wallpapers:",
+    wallpapers.filter(w => w.category === "beach")
+);
 
+console.log("Rainfall wallpapers:",
+    wallpapers.filter(w => w.category === "rain")
+);
+
+console.log("Ocean wallpapers:",
+    wallpapers.filter(w => w.category === "ocean")
+);
+
+console.log("Sunset wallpapers:",
+    wallpapers.filter(w => w.category === "sunset")
+);
 // ============================================
 // INITIALIZE THE GALLERY
 // ============================================
