@@ -239,25 +239,17 @@ cancelAddButton.addEventListener("click", () => {
     collectionModal.hidden = true;
     wallpaperToAdd = null;
 
-    cancelAddButton.addEventListener("click", () => {
-        collectionModal.hidden = true;
-        wallpaperToAdd = null;
+    createCollectionForm.hidden = true;
+    showCreateCollectionButton.hidden = false;
+    createAndAddButton.hidden = false;
 
-
-        createCollectionForm.hidden = true;
-        showCreateCollectionButton.hidden = false;
-        createAndAddButton.hidden = false;
-
-        newCollectionNameInput.value = "";
-
-        modalMessage.textContent = "";
-        modalMessage.classList.remove("success", "error");
-
-
-    });
+    newCollectionNameInput.value = "";
 
     modalMessage.textContent = "";
+    modalMessage.classList.remove("success", "error");
 });
+    modalMessage.textContent = "";
+
 
 
 // Load saved collections from localStorage.

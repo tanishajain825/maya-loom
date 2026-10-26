@@ -825,3 +825,44 @@ console.log("Sunset wallpapers:",
 if (typeof wallpapers !== "undefined") {
     displayWallpapers(getFilteredWallpapers());
 }
+// ============================================
+// MAYA LOOM WALLPAPER NOTIFICATION
+// ============================================
+
+function showWallpaperToast(message, type = "success") {
+    const toast = document.getElementById("applyStatus");
+    const icon = document.getElementById("toastIcon");
+    const text = document.getElementById("toastMessage");
+
+    if (!toast || !icon || !text) {
+        console.error("Wallpaper notification elements not found.");
+        return;
+    }
+
+    clearTimeout(window.wallpaperToastTimer);
+
+    toast.classList.remove("show", "success", "error");
+    icon.classList.remove("loading");
+
+    text.textContent = message;
+
+    if (type === "success") {
+        icon.textContent = "✓";
+        toast.classList.add("success");
+    } else if (type === "error") {
+        icon.textContent = "✕";
+        toast.classList.add("error");
+    } else {
+        icon.textContent = "✦";
+        icon.classList.add("loading");
+    }
+
+    toast.classList.add("show");
+
+    if (type !== "loading") {
+        window.wallpaperToastTimer = setTimeout(() => {
+            toast.classList.remove("show", "success", "error");
+            icon.classList.remove("loading");
+        }, 3000);
+    }
+}
