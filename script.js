@@ -346,6 +346,8 @@ function saveWallpaper(wallpaperOrName) {
 let selectedCategory = "all";
 let currentView = "home";
 let latestRequestId = 0; // used to ignore outdated responses
+let currentPage = 1;
+let isLoadingMore = false;
 
 // The API already filters the results, so just return them as they are.
 function getFilteredWallpapers() {
@@ -359,6 +361,7 @@ async function loadWallpapers() {
     const query = typed || CATEGORY_QUERIES[selectedCategory] || "";
 
     currentView = "home";
+    currentPage = 1;
 
     if (heading) {
         heading.textContent = typed
@@ -373,7 +376,10 @@ async function loadWallpapers() {
 
     if (!window.api) {
         wallpaperContainer.innerHTML = "";
-        showWallpaperToast("App bridge not found (check preload.js).", "error");
+        showWallpaperToast(
+            "App bridge not found (check preload.js).",
+            "error"
+        );
         return;
     }
 
@@ -383,24 +389,126 @@ async function loadWallpapers() {
         const photos = await window.api.unsplashSearch({
             query,
             category: selectedCategory,
-            page: 1
+            page: currentPage
         });
 
-        // A newer request was made while waiting, so drop this result.
         if (requestId !== latestRequestId) return;
 
-        wallpapers = photos;
+        wallpapers = Array.isArray(photos) ? photos : [];
         wallpapers.forEach(addKnown);
+
         displayWallpapers(wallpapers);
+        addLoadMoreButton();
     } catch (error) {
         if (requestId !== latestRequestId) return;
 
         console.error("Unsplash error:", error);
         wallpaperContainer.innerHTML = "";
-        showWallpaperToast(error.message || "Could not load wallpapers.", "error");
+
+        showWallpaperToast(
+            error.message || "Could not load wallpapers.",
+            "error"
+        );
     }
 }
+function addLoadMoreButton() {
+    const oldButton = document.getElementById("loadMoreWallpapers");
 
+    if (oldButton) oldButton.remove();
+
+    const button = document.createElement("button");
+
+    button.id = "loadMoreWallpapers";
+    button.textContent = "✦ Load More Wallpapers";
+    button.className = "load-more-button";
+
+    button.style.display = "block";
+    button.style.margin = "25px auto";
+    button.style.padding = "12px 24px";
+    button.style.cursor = "pointer";
+
+    button.addEventListener("click", loadMoreWallpapers);
+
+    wallpaperContainer.after(button);
+}
+
+async function loadMoreWallpapers() {
+    if (isLoadingMore || !window.api) return;
+
+    const button = document.getElementById("loadMoreWallpapers");
+
+    isLoadingMore = true;
+
+    if (button) {
+        button.disabled = true;
+        button.textContent = "Loading wallpapers...";
+    }
+
+    const requestId = latestRequestId;
+    const nextPage = currentPage + 1;
+
+    try {
+        const typed = searchInput ? searchInput.value.trim() : "";
+        const query = typed || CATEGORY_QUERIES[selectedCategory] || "";
+
+        const photos = await window.api.unsplashSearch({
+            query,
+            category: selectedCategory,
+            page: nextPage
+        });
+
+        if (requestId !== latestRequestId) return;
+
+        if (!Array.isArray(photos) || photos.length === 0) {
+            if (button) {
+                button.textContent = "No More Wallpapers";
+                button.disabled = true;
+            }
+            return;
+        }
+
+        const existingKeys = new Set(
+            wallpapers.map(getWallpaperKey)
+        );
+
+        const newPhotos = photos.filter(
+            photo => !existingKeys.has(getWallpaperKey(photo))
+        );
+
+        wallpapers = [...wallpapers, ...newPhotos];
+        currentPage = nextPage;
+
+        wallpapers.forEach(addKnown);
+        if (currentView === "saved") {
+    displayWallpapers(savedWallpapers);
+} else {
+    displayWallpapers(wallpapers);
+}
+
+        if (newPhotos.length === 0) {
+            if (button) {
+                button.textContent = "No New Wallpapers Found";
+                button.disabled = true;
+            }
+        } else {
+            addLoadMoreButton();
+        }
+    } catch (error) {
+        console.error("Could not load more wallpapers:", error);
+
+        if (button) {
+            button.disabled = false;
+            button.textContent = "Try Loading Again";
+        }
+
+        showWallpaperToast(
+            error.message || "Could not load more wallpapers.",
+            "error"
+        );
+    } finally {
+        isLoadingMore = false;
+    }
+}
 // Highlight the active category button.
 function setActiveCategory() {
     document.querySelectorAll(".seg").forEach((button) => {
