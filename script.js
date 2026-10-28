@@ -1,323 +1,79 @@
-/* Step 1: Wallpaper data */
+/* ============================================
+   MAYA LOOM - script.js
+   ============================================ */
 
-let wallpapers = [
-    {
-        name: "Cosmic Beauty",
-        category: "space",
-        image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        name: "Cosmic Beauty",
-        category: "space",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM3nGmVTzxpO2c-E3u9rh1_0WFT2-Rw6qCdOc-qd7wVw&s=10"
-    },
-    {
-        name: "Cosmic Beauty",
-        category: "space",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7dTSPX9SOrZvQ7IDHervZfTb9jPPXKu8YL-IoArGapg&s=10"
-    },
-    {
-        name: "Cosmic Beauty",
-        category: "space",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9zl1_NqfGOgVhPMY54FxMMADhDDdSBcHDOlgB4jq35Q&s=10"
-    },
-    {
-        name: "Cosmic Beauty",
-        category: "space",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXTP0_zKx5M9InXYuVNvZXwSK8MAHWNbx4gY9m5bMfPg&s=10"
-    },
-    {
-        name: "Cosmic Beauty",
-        category: "space",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwyJmh2qZGYE6qnSmK-KrbwLaH10RlzM1gEwzKQoEeTCgeyY8rYrFKfiY&s=10"
-    },
-    {
-        name: "Cosmic Beauty",
-        category: "space",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7dTSPX9SOrZvQ7IDHervZfTb9jPPXKu8YL-IoArGapg&s=10"
-    },
-    {
-        name: "Cosmic Beauty",
-        category: "space",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVY4s2d17Sz8nwTemzCcFriHSLJsncf37VzVOqot6sBw&s=10"
-    },
-    {
-        name: " Nature is bliss",
-        category: "nature",
-        image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        name: " Nature is bliss",
-        category: "nature",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXm7IBS8ceoXrttgPYm-8nN4kR-WinkfgT8BBj_cTqNA&s=10"
-    },
-    {
-        name: " Nature is bliss",
-        category: "nature",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgguETy_9kZhPPuEmDUtgbKDjY4QRkVUQEALhuxJNOkA&s=10"
-    },
-    {
-        name: " Nature is bliss",
-        category: "nature",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1DmzeXGV27AZHRF5hEbtEa5AWwiGbhw1FFKcDSRHgUw&s=10"
-    },
-    {
-        name: " Nature is bliss",
-        category: "nature",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_HqQtGKE_Anx8D4ZazL3NyCaIqxUd5vwflmx5NHExNw&s=10"
-    },
-    {
-        name: " Nature is bliss",
-        category: "nature",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_pfuAcF5HWDKgHgeDvC8MBcpUg5N1Cz1GAAGZZH5inQ&s=10"
-    },
-    {
-        name: " Nature is bliss",
-        category: "nature",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHTeR6giIiFLtNSwda0ayseuN0b0MBQ1URpw0jgAkjZw&s=10"
-    },
-    {
-        name: " Nature is bliss",
-        category: "nature",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTejA9qrBkMwYnf5zYEGWmKkQSgH4iKSeTU8sXNzZiwGw&s=10"
-    },
-    {
-        name: "Mountain view",
-        category: "mountains",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9-JISE3cjciF5deKUry9fNxTUmha-dyO5qlaSwY-vug&s=10"
-    },
-    {
-        name: "Mountain view",
-        category: "mountains",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1fx1nh6PqZRY1j1bJwz-9wdd8PhCENRxPDvi8ikuP4A&s"
-    },
-    {
-        name: "Mountain view",
-        category: "mountains",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0ZxQOv6Fjebu3VkeEtdKaBS4hkUozRdcMO1V-RuvxXg&s=10"
-    },
-    {
-        name: "Mountain view",
-        category: "mountains",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd6GB52axN3V0j3pX-q1j1be3HV2caAQ6oRj0dH7gc-w&s=10"
-    },
-    {
-        name: "Mountain view",
-        category: "mountains",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf95GKxp-bYuHnEyd_3sSR21oAbE_l0AjFwxKGYQ0EUA&s=10"
-    },
-    {
-        name: "Mountain view",
-        category: "mountains",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeUsHf186xeFNmE73AMLcqgV5xFGGCsEQgIYU5xHuBkQ&s=10"
-    },
-    {
-        name: "Mountain view",
-        category: "mountains",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEw-7JxS1qsrkgdfDJe-RCUYQmGsolcDS4XBuNhSFhLg&s=10"
-    },
-    {
-        name: "Moon and stars",
-        category: "moon",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRB5w5qp4uUOXDVS4NgomPc_7fbniazs99r7G2nrdsCw&s=10"
-    },
-    {
-        name: "Moon and stars",
-        category: "moon",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUgKfu0pKX0LGvusWCg-z3zyk7stSjkteuTerEtnRKvA&s=10"
-    },
-    {
-        name: "Moon and stars",
-        category: "moon",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZK9JhzpJPjg4Hx41oaHR7oOehMKNrm5w48pRmnF0csw&s=10"
-    },
-    {
-        name: "Moon and stars",
-        category: "moon",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkrhf1dlTvCfLpCaqFrJnnl5TrqQqU_QX9fi1y570zdA&s=10"
-    },
-    {
-        name: "Moon and stars",
-        category: "moon",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAThwXFxqAGGyMNUSev8y6uHLP5Z1HnHRxnrkiMbhUdw&s=10"
-    },
-    {
-        name: "Moon and stars",
-        category: "moon",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ49SIBTcT6CH-k8vg8CHpp1q1lrBOw4FldXmS_8luV8w&s=10"
-    },
-    {
-        name: "Moon and stars",
-        category: "moon",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVpqJ3ZXV4fYRHQdwL-iju9D8JLNJEGFKnVUYdeSeOHg&s=10"
-    },
-    {
-        name: "Moon and stars",
-        category: "moon",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnhZhhjcIgqodeypkUsFRDWUE4AhiykkrE3mQsunU1Ow&s=10"
-    },
-    {
-        name: "Flowers in bloom",
-        category: "flower",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA2-DLihuj29d6AfybOogATDohmx1JKFhsol6boswIxw&s=10"
-    },
-    {
-        name: "Flowers in bloom",
-        category: "flower",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR52J711PoIgM8XOKX3oUllAVsTl-4CK69QfCO1wbo1lQ&s=10"
-    },
-    {
-        name: "Flowers in bloom",
-        category: "flower",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2RcO--eLwqcTMquJu6HQGkjx8IPZIJ3IOw4MTEl_uHw&s=10"
-    },
-    {
-        name: "Flowers in bloom",
-        category: "flower",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv0Z1McDbnPRj9Mhp6w5_2UwsZIGnDQq_tqil6i-g8yw&s=10"
-    },
-    {
-        name: "Flowers in bloom",
-        category: "flower",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqqAgctX4iPmf7jSPnTZD0exaITNGZdU8dLxMUMic1Tg&s=10"
-    },
-    {
-        name: "Flowers in bloom",
-        category: "flower",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLaVl3-CGRLP5KehF1jq3dcs16Oc7YAC6nmFj8aMzIvQ&s=10"
-    },
-    {
-        name: "Flowers in bloom",
-        category: "flower",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1_vOp0iv9D_QmyBp95_52gekamWBK4zdSKxRPjBUkiA&s=10"
-    },
-    {
-        name: "Flowers in bloom",
-        category: "flower",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ2vgibZs5mbzYaKv2Yzs-mI14DvmegoSZpiP0rL8HQA&s=10"
-    },
-    {
-        name: "Ocean Dreams",
-        category: "beach",
-        image: "https://t4.ftcdn.net/jpg/10/09/70/43/360_F_1009704358_uqNIVY8XZMPMm50Lb1sS6vG3ofN8IVYI.jpg"
-    },
-    {
-        name: "Ocean Dreams",
-        category: "beach",
-        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
-    },
-    {
-        name: "Ocean Dreams",
-        category: "beach",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR10a5uvBByZ_fXllMKrc_8KPbWV6MIOmJ3wJFYB8EOAm-rFOUNfxIUZ9A&s=10"
-    },
-    {
-        name: "Ocean Dreams",
-        category: "beach",
-        image: "https://cdn.pixabay.com/photo/2022/09/06/14/40/beach-7436794_640.jpg"
-    },
-    {
-        name: "Ocean Dreams",
-        category: "beach",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMHKZinbW6ukDKuPUhmLKlZFcYP9Z8d0u6WQX3cijmmob_NIWeW6PvWigp&s=10"
-    },
-    {
-        name: "Ocean Dreams",
-        category: "beach",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8AmLH0-WDaItF8CYxVZaE4bbHVDXKStEcPKdaXXyiXHRH59MvgBLpDU0&s=10"
-    },
-    {
-        name: "Golden Sunset",
-        category: "sunset",
-        image: "https://images.pexels.com/photos/29833846/pexels-photo-29833846/free-photo-of-golden-sunset-over-serene-beach-landscape.jpeg?auto=compress&w=1260&h=750&dpr=1"
-    },
-    {
-        name: "Golden Sunset",
-        category: "sunset",
-        image: "https://static.vecteezy.com/system/resources/thumbnails/039/072/739/small/sunset-sky-on-the-lake-photo.jpg"
-    },
-    {
-        name: "Golden Sunset",
-        category: "sunset",
-        image: "https://png.pngtree.com/thumb_back/fh260/background/20251103/pngtree-a-breathtaking-golden-sunset-casting-warm-glow-over-endless-rows-of-image_20219189.webp"
-    },
-    {
-        name: "Golden Sunset",
-        category: "sunset",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRio_0pP6dGKpvXxkChbksF53BKXQN5vIg9rFketAcGv4S-bJMsGghkDG_s&s=10"
-    },
-    {
-        name: "Golden Sunset",
-        category: "sunset",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtSyR9vd93zIa9d5Ymwy_gPb4W5XBf4-Ukww0E6JwNZzMWY-6OOppxh7Ca&s=10"
-    },
-    {
-        name: "Deep Blue Ocean",
-        category: "ocean",
-        image: "https://media.istockphoto.com/id/1179138818/photo/spinner-dolphins-underwater-in-blue-ocean.jpg?s=612x612&w=0&k=20&c=H9nPBihOfU2RZ59RTb3A-iQHlpXBcwgqlv-OsNhDr_w="
-    },
-    {
-        name: "Deep Blue Ocean",
-        category: "ocean",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpVinUGTB5aaBOwTg8P6C-UEFihvMUgZ5JlCo8oceBE5qLvgYJ2NkQ3XNJ&s=10"
-    },
-    {
-        name: "Deep Blue Ocean",
-        category: "ocean",
-        image: "https://i.pinimg.com/736x/af/d3/cf/afd3cfd14bbe4bad45bb64325e9c0fea.jpg"
-    },
-    {
-        name: "Deep Blue Ocean",
-        category: "ocean",
-        image: "https://4kwallpapers.com/images/walls/thumbs_2t/9638.jpg"
-    },
-    {
-        name: "Deep Blue Ocean",
-        category: "ocean",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPZrBHLg4PpRILV6pvQjsGphF29Ys3BG9AQrqTuC8MkmIAlC5lZls92w4&s=10"
-    },
-    {
-        name: "Deep Blue Ocean",
-        category: "ocean",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi_gGIlm9xEYq9nhw5IxPUDz-ZptnwCMMkR17BYW4-UhTELpB3MkxAE7w&s=10"
-    },
-    {
-        name: "Aesthetic Rainfall",
-        category: "rain",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTPBWJJXCrEu5TJYBtsLGrEth_TPThr82qu4SAlOt7ABxgOOGIQhcAxwI&s=10"
-    },
-    {
-        name: "Aesthetic Rainfall",
-        category: "rain",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk5IcQtZPX4bMsMkFnyeZlgXetvPEb3qcAzHt11lPLeLR9q0A6n00poO0N&s=10"
-    },
-    {
-        name: "Aesthetic Rainfall",
-        category: "rain",
-        image: "https://wallpaperaccess.com/full/134828.jpg"
-    },
-    {
-        name: "Aesthetic Rainfall",
-        category: "rain",
-        image: "https://t4.ftcdn.net/jpg/08/39/31/27/360_F_839312720_5nyVKmkpovvGxA4r9oTl4D6zeLOFurWF.jpg"
-    },
-    {
-        name: "Aesthetic Rainfall",
-        category: "rain",
-        image: "https://t3.ftcdn.net/jpg/07/68/44/46/360_F_768444677_UcbjPoC6HS5yEXyZjx0DwiJ2tAwL2flo.jpg"
-    },
-    {
-        name: "Aesthetic Rainfall",
-        category: "rain",
-        image: "https://images7.alphacoders.com/345/345392.jpg"
-    },
-    {
-        name: "Aesthetic Rainfall",
-        category: "rain",
-        image: "https://wallpaperaccess.com/full/2950467.jpg"
-    },
-];
 
+// ============================================
+// WALLPAPER DATA (loaded from Unsplash)
+// ============================================
+
+// Photos currently shown on screen.
+let wallpapers = [];
+
+// Every photo we have seen or remembered.
+// renderer.js (collections) looks photos up in this list.
+const knownPhotos = [];
+
+const COLLECTION_PHOTOS_KEY = "mayaLoom.collectionPhotos.v1";
+
+// Maps each category button to an Unsplash search term.
+const CATEGORY_QUERIES = {
+    all: "",
+    space: "space",
+    moon: "moon",
+    nature: "nature",
+    mountains: "mountains",
+    flower: "flower",
+    beach: "beach",
+    sunset: "golden sunset",
+    ocean: "deep ocean",
+    rain: "rainfall"
+};
+
+// Add a photo to knownPhotos if it is not already there.
+function addKnown(photo) {
+    const key = getWallpaperKey(photo);
+
+    if (!knownPhotos.some((p) => getWallpaperKey(p) === key)) {
+        knownPhotos.push(photo);
+    }
+}
+
+// Store the full photo data when it is added to a collection.
+// Collections only save IDs, and search results change often,
+// so without this the photo would disappear from the collection.
+function rememberPhoto(photo) {
+    try {
+        const list = JSON.parse(
+            localStorage.getItem(COLLECTION_PHOTOS_KEY) || "[]"
+        );
+        const key = getWallpaperKey(photo);
+
+        if (!list.some((p) => getWallpaperKey(p) === key)) {
+            list.push(photo);
+            localStorage.setItem(COLLECTION_PHOTOS_KEY, JSON.stringify(list));
+        }
+    } catch (error) {
+        console.error("Could not remember photo:", error);
+    }
+
+    addKnown(photo);
+}
+
+// Load remembered collection photos when the app starts.
+function loadRememberedPhotos() {
+    try {
+        const list = JSON.parse(
+            localStorage.getItem(COLLECTION_PHOTOS_KEY) || "[]"
+        );
+
+        if (Array.isArray(list)) {
+            list.forEach(addKnown);
+        }
+    } catch (error) {
+        console.error("Could not load remembered photos:", error);
+    }
+}
 
 
 // ============================================
@@ -331,7 +87,8 @@ let savedWallpapers = loadSavedWallpapers();
 function loadSavedWallpapers() {
     try {
         const saved = localStorage.getItem(SAVED_STORAGE_KEY);
-        return saved ? JSON.parse(saved) : [];
+        const parsed = saved ? JSON.parse(saved) : [];
+        return Array.isArray(parsed) ? parsed : [];
     } catch (error) {
         console.error("Could not load saved wallpapers:", error);
         return [];
@@ -339,10 +96,14 @@ function loadSavedWallpapers() {
 }
 
 function persistSavedWallpapers() {
-    localStorage.setItem(
-        SAVED_STORAGE_KEY,
-        JSON.stringify(savedWallpapers)
-    );
+    try {
+        localStorage.setItem(
+            SAVED_STORAGE_KEY,
+            JSON.stringify(savedWallpapers)
+        );
+    } catch (error) {
+        console.error("Could not save wallpapers:", error);
+    }
 }
 
 
@@ -350,17 +111,27 @@ function persistSavedWallpapers() {
 // DOM ELEMENTS
 // ============================================
 
-const wallpaperContainer =
-    document.getElementById("wallpaperContainer");
+const wallpaperContainer = document.getElementById("wallpaperContainer");
+const searchInput = document.getElementById("searchInput");
+const heading = document.getElementById("heading");
+const intro = document.getElementById("intro");
 
-const searchInput =
-    document.getElementById("searchInput");
 
-const heading =
-    document.getElementById("heading");
+// ============================================
+// IDENTIFY WALLPAPERS
+// ============================================
 
-const intro =
-    document.getElementById("intro");
+// Unsplash photo IDs are the best unique key.
+// The fallbacks keep older saved data working.
+function getWallpaperKey(wallpaper) {
+    return (
+        wallpaper.id ||
+        wallpaper.image ||
+        wallpaper.url ||
+        wallpaper.src ||
+        wallpaper.name
+    );
+}
 
 
 // ============================================
@@ -381,28 +152,26 @@ function displayWallpapers(list) {
         return;
     }
 
-
     list.forEach((wallpaper) => {
         const card = document.createElement("div");
         card.className = "wallpaper-card";
         card.style.display = "flex";
         card.style.flexDirection = "column";
-
         card.style.cursor = "pointer";
 
-card.addEventListener("click", () => {
-    document.querySelectorAll(".wallpaper-card").forEach((item) => {
-        item.style.border = "";
-    });
+        // Clicking a card highlights it and marks it as selected.
+        card.addEventListener("click", () => {
+            document.querySelectorAll(".wallpaper-card").forEach((item) => {
+                item.style.border = "";
+            });
 
-    card.style.border = "3px solid violet";
+            card.style.border = "3px solid violet";
+            window.selectedWallpaper = wallpaper;
+        });
 
-    window.selectedWallpaper = wallpaper;
-});
-
+        // ----- Image -----
         const image = document.createElement("img");
 
-        // Support common property names used for image URLs.
         image.src =
             wallpaper.image ||
             wallpaper.url ||
@@ -415,31 +184,55 @@ card.addEventListener("click", () => {
             console.error("Failed to load wallpaper:", image.src);
         });
 
+        // ----- Title -----
         const title = document.createElement("h3");
         title.textContent = wallpaper.name || "Untitled Wallpaper";
 
+        // ----- Photographer credit (required by Unsplash) -----
+        let credit = null;
+
+        if (wallpaper.photographer) {
+            credit = document.createElement("p");
+            credit.className = "photo-credit";
+            credit.append("Photo by ");
+
+            const creditLink = document.createElement("a");
+            creditLink.href = wallpaper.photographerUrl || "#";
+            creditLink.target = "_blank";
+            creditLink.rel = "noopener noreferrer";
+            creditLink.textContent = wallpaper.photographer;
+            creditLink.addEventListener("click", (event) => {
+                event.stopPropagation();
+            });
+
+            credit.append(creditLink, " on Unsplash");
+        }
+
+        // ----- Save button -----
         const saveButton = document.createElement("button");
 
         const alreadySaved = savedWallpapers.some(
             (saved) => getWallpaperKey(saved) === getWallpaperKey(wallpaper)
         );
 
-        saveButton.textContent = alreadySaved
-            ? "♥ Saved"
-            : "♡ Save";
+        saveButton.textContent = alreadySaved ? "♥ Saved" : "♡ Save";
 
-        saveButton.addEventListener("click", () => {
+        saveButton.addEventListener("click", (event) => {
+            event.stopPropagation();
             saveWallpaper(wallpaper);
         });
-        const collectionButton = document.createElement("button");
 
+        // ----- Add to Collection button -----
+        const collectionButton = document.createElement("button");
         collectionButton.textContent = "+ Add to Collection";
 
         collectionButton.addEventListener("click", (event) => {
             event.stopPropagation();
-            addWallpaperToCollection(wallpaper);
+            rememberPhoto(wallpaper);
+            window.addWallpaperToCollection(wallpaper);
         });
 
+        // ----- Apply to Desktop button -----
         const applyButton = document.createElement("button");
         applyButton.textContent = "Apply to Desktop";
 
@@ -447,42 +240,53 @@ card.addEventListener("click", () => {
             event.stopPropagation();
 
             try {
-                showWallpaperToast("Applying your wallpaper...", "loading");
+                if (!window.api) {
+                    showWallpaperToast("App bridge not found (check preload.js).", "error");
+                    return;
+                }
 
-                const imagePath = wallpaper.image || wallpaper.url || wallpaper.src;
+                // Use the full-size image when available.
+                const imagePath = wallpaper.full || wallpaper.image;
 
                 if (!imagePath) {
                     showWallpaperToast("Wallpaper image not found.", "error");
                     return;
                 }
 
-                const result = await window.mayaAPI.applyWallpaper(imagePath);
+                showWallpaperToast("Applying your wallpaper...", "loading");
 
-                console.log("Wallpaper API result:", result);
+                const result = await window.api.applyWallpaper(imagePath);
 
                 if (result && result.success === false) {
                     showWallpaperToast("Could not apply wallpaper.", "error");
-                } else {
-                    showWallpaperToast("Wallpaper applied successfully!", "success");
+                    return;
+                }
+
+                showWallpaperToast("Wallpaper applied successfully!", "success");
+
+                // Unsplash asks apps to report when a photo is used.
+                if (wallpaper.downloadLocation) {
+                    window.api.unsplashTrackDownload(wallpaper.downloadLocation);
                 }
             } catch (error) {
                 console.error("Wallpaper error:", error);
-                showWallpaperToast("Failed to apply wallpaper.", "error");
+                showWallpaperToast(
+                    error.message || "Failed to apply wallpaper.",
+                    "error"
+                );
             }
         });
 
-        card.appendChild(image);
-        card.appendChild(title);
-
+        // ----- Build the card -----
         const buttonContainer = document.createElement("div");
         buttonContainer.style.display = "flex";
         buttonContainer.style.gap = "8px";
         buttonContainer.style.marginTop = "10px";
+        buttonContainer.append(saveButton, collectionButton, applyButton);
 
-        buttonContainer.appendChild(saveButton);
-        buttonContainer.appendChild(collectionButton);
-        buttonContainer.appendChild(applyButton);
-
+        card.appendChild(image);
+        card.appendChild(title);
+        if (credit) card.appendChild(credit);
         card.appendChild(buttonContainer);
 
         wallpaperContainer.appendChild(card);
@@ -491,39 +295,18 @@ card.addEventListener("click", () => {
 
 
 // ============================================
-// IDENTIFY WALLPAPERS
-// ============================================
-
-// Use the image URL as the identifier where possible.
-// This prevents wallpapers with the same name from
-// being treated as the same wallpaper.
-
-function getWallpaperKey(wallpaper) {
-    return (
-        wallpaper.image ||
-        wallpaper.url ||
-        wallpaper.src ||
-        wallpaper.name
-    );
-}
-
-
-// ============================================
 // SAVE / UNSAVE WALLPAPERS
 // ============================================
 
 function saveWallpaper(wallpaperOrName) {
-    // Support both saveWallpaper(wallpaperObject)
+    // Supports both saveWallpaper(wallpaperObject)
     // and the older saveWallpaper("Wallpaper Name") call.
-
     let wallpaper;
 
     if (typeof wallpaperOrName === "object") {
         wallpaper = wallpaperOrName;
     } else {
-        wallpaper = wallpapers.find(
-            (item) => item.name === wallpaperOrName
-        );
+        wallpaper = wallpapers.find((item) => item.name === wallpaperOrName);
     }
 
     if (!wallpaper) {
@@ -537,15 +320,17 @@ function saveWallpaper(wallpaperOrName) {
         (saved) => getWallpaperKey(saved) === key
     );
 
+    // Toggle: remove if already saved, otherwise add.
     if (existingIndex !== -1) {
         savedWallpapers.splice(existingIndex, 1);
     } else {
         savedWallpapers.push(wallpaper);
+        addKnown(wallpaper);
     }
 
     persistSavedWallpapers();
 
-    // Refresh whichever wallpaper view is currently visible.
+    // Refresh whichever view is currently visible.
     if (currentView === "saved") {
         displayWallpapers(savedWallpapers);
     } else {
@@ -555,86 +340,117 @@ function saveWallpaper(wallpaperOrName) {
 
 
 // ============================================
-// SEARCH WALLPAPERS
+// SEARCH + CATEGORY (Unsplash)
 // ============================================
 
 let selectedCategory = "all";
 let currentView = "home";
+let latestRequestId = 0; // used to ignore outdated responses
 
+// The API already filters the results, so just return them as they are.
 function getFilteredWallpapers() {
-    const query = searchInput
-        ? searchInput.value.trim().toLowerCase()
-        : "";
-
-    return wallpapers.filter((wallpaper) => {
-        const matchesSearch =
-            (wallpaper.name || "").toLowerCase().includes(query);
-
-        const category =
-            (wallpaper.category || "").toLowerCase();
-
-        const matchesCategory =
-            selectedCategory === "all" ||
-            category === selectedCategory;
-
-        return matchesSearch && matchesCategory;
-    });
+    return wallpapers;
 }
 
-function searchWallpapers() {
-    currentView = "home";
-    displayWallpapers(getFilteredWallpapers());
-}
+async function loadWallpapers() {
+    if (!wallpaperContainer) return;
 
-if (searchInput) {
-    searchInput.addEventListener("input", searchWallpapers);
-}
+    const typed = searchInput ? searchInput.value.trim() : "";
+    const query = typed || CATEGORY_QUERIES[selectedCategory] || "";
 
-
-// ============================================
-// CATEGORY FILTERS
-// ============================================
-
-function filterCategory(category) {
-    selectedCategory = (category || "all").toLowerCase();
     currentView = "home";
 
-    // Update the active category button.
+    if (heading) {
+        heading.textContent = typed
+            ? `Results for "${typed}"`
+            : selectedCategory === "all"
+                ? "Top Wallpapers"
+                : "Explore Wallpapers";
+    }
+
+    wallpaperContainer.innerHTML =
+        '<p class="empty-message">Loading wallpapers...</p>';
+
+    if (!window.api) {
+        wallpaperContainer.innerHTML = "";
+        showWallpaperToast("App bridge not found (check preload.js).", "error");
+        return;
+    }
+
+    const requestId = ++latestRequestId;
+
+    try {
+        const photos = await window.api.unsplashSearch({
+            query,
+            category: selectedCategory,
+            page: 1
+        });
+
+        // A newer request was made while waiting, so drop this result.
+        if (requestId !== latestRequestId) return;
+
+        wallpapers = photos;
+        wallpapers.forEach(addKnown);
+        displayWallpapers(wallpapers);
+    } catch (error) {
+        if (requestId !== latestRequestId) return;
+
+        console.error("Unsplash error:", error);
+        wallpaperContainer.innerHTML = "";
+        showWallpaperToast(error.message || "Could not load wallpapers.", "error");
+    }
+}
+
+// Highlight the active category button.
+function setActiveCategory() {
     document.querySelectorAll(".seg").forEach((button) => {
-        const buttonCategory = (
+        // Read the key from the inline onclick, e.g. filterCategory('sunset'),
+        // because labels like "Golden Sunset" differ from the key.
+        const onclickMatch = (button.getAttribute("onclick") || "")
+            .match(/filterCategory\('(.+?)'\)/);
+
+        const fallback = (
             button.dataset.category ||
             button.dataset.filter ||
             button.textContent
         ).trim().toLowerCase();
 
-        button.classList.toggle(
-            "active",
-            buttonCategory === selectedCategory ||
-            (
-                selectedCategory === "all" &&
-                buttonCategory === "all"
-            )
-        );
-    });
+        const key = onclickMatch ? onclickMatch[1] : fallback;
 
-    displayWallpapers(getFilteredWallpapers());
+        button.classList.toggle("active", key === selectedCategory);
+    });
 }
 
+// Search runs only on Enter or the Search button,
+// not on every keystroke, to save Unsplash requests.
+function searchWallpapers() {
+    selectedCategory = "all";
+    setActiveCategory();
+    loadWallpapers();
+}
 
-// Make these functions available to inline HTML onclick handlers.
+function filterCategory(category) {
+    selectedCategory = (category || "all").toLowerCase();
+
+    if (searchInput) searchInput.value = "";
+
+    setActiveCategory();
+    loadWallpapers();
+}
+
+if (searchInput) {
+    searchInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") searchWallpapers();
+    });
+}
+
+// Make these available to inline HTML onclick handlers and renderer.js.
 window.filterCategory = filterCategory;
 window.searchWallpapers = searchWallpapers;
 window.saveWallpaper = saveWallpaper;
-window.wallpapers = wallpapers;
+window.wallpapers = knownPhotos;
 window.getWallpaperKey = getWallpaperKey;
 
-// Connect category buttons without requiring inline onclick.
-document.querySelectorAll(".seg").forEach((button) => {
-    button.addEventListener("click", () => {
-        // The inline onclick handler already calls filterCategory().
-        // Do not call it a second time using the button's display text.
-    });
-});
 
 // ============================================
 // HOME AND SAVED WALLPAPERS
@@ -644,7 +460,10 @@ function showHome() {
     currentView = "home";
 
     if (heading) {
-        heading.textContent = "Explore Wallpapers";
+        heading.textContent =
+            selectedCategory === "all" && !(searchInput && searchInput.value.trim())
+                ? "Top Wallpapers"
+                : "Explore Wallpapers";
     }
 
     const homePage = document.getElementById("home-page");
@@ -676,27 +495,28 @@ function showSaved() {
         heading.textContent = "Saved Wallpapers";
     }
 
-    const collectionsPage = document.getElementById("collections-page");
     const homePage = document.getElementById("home-page");
     const wallpaperPage = document.getElementById("wallpaper-page");
+    const collectionsPage = document.getElementById("collections-page");
 
     if (collectionsPage) {
         collectionsPage.hidden = true;
+        collectionsPage.classList.add("hidden");
     }
 
     if (homePage) {
         homePage.hidden = false;
+        homePage.classList.remove("hidden");
     }
 
     if (wallpaperPage) {
         wallpaperPage.hidden = false;
+        wallpaperPage.classList.remove("hidden");
     }
 
     displayWallpapers(savedWallpapers);
 }
 
-
-// Make navigation functions available to HTML.
 window.showHome = showHome;
 window.showSaved = showSaved;
 
@@ -783,9 +603,8 @@ document.addEventListener("click", (event) => {
 // OPTIONAL SLIDING TABS
 // ============================================
 
-// These elements may not exist in every version of the HTML.
-// Check for them before attaching event listeners.
-
+// This element may not exist in every version of the HTML,
+// so check for it before attaching listeners.
 const mainTabs = document.getElementById("mainTabs");
 
 if (mainTabs) {
@@ -800,33 +619,9 @@ if (mainTabs) {
     });
 }
 
-console.log("Beach wallpapers:",
-    wallpapers.filter(w => w.category === "beach")
-);
 
-console.log("Rainfall wallpapers:",
-    wallpapers.filter(w => w.category === "rain")
-);
-
-console.log("Ocean wallpapers:",
-    wallpapers.filter(w => w.category === "ocean")
-);
-
-console.log("Sunset wallpapers:",
-    wallpapers.filter(w => w.category === "sunset")
-);
 // ============================================
-// INITIALIZE THE GALLERY
-// ============================================
-
-// Display wallpapers when the page loads.
-// This assumes your original wallpapers array is defined above.
-
-if (typeof wallpapers !== "undefined") {
-    displayWallpapers(getFilteredWallpapers());
-}
-// ============================================
-// MAYA LOOM WALLPAPER NOTIFICATION
+// WALLPAPER NOTIFICATION (TOAST)
 // ============================================
 
 function showWallpaperToast(message, type = "success") {
@@ -859,6 +654,7 @@ function showWallpaperToast(message, type = "success") {
 
     toast.classList.add("show");
 
+    // Loading messages stay until replaced; others hide after 3 seconds.
     if (type !== "loading") {
         window.wallpaperToastTimer = setTimeout(() => {
             toast.classList.remove("show", "success", "error");
@@ -866,3 +662,12 @@ function showWallpaperToast(message, type = "success") {
         }, 3000);
     }
 }
+
+
+// ============================================
+// START
+// ============================================
+
+loadRememberedPhotos();               // photos used in collections
+savedWallpapers.forEach(addKnown);    // saved photos
+loadWallpapers();                     // fetch the first batch from Unsplash
