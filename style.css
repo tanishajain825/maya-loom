@@ -505,7 +505,7 @@ Keep maya-bg.png in the same folder as this file.
     opacity: 0;
     pointer-events: none;
     will-change: transform, opacity;
-    animation: logoRise 3.6s cubic-bezier(0.16, 0.8, 0.24, 1) 2.4s both;
+    animation: logoRise 4.8s cubic-bezier(0.16, 0.8, 0.24, 1) 4.2s both;
 }
 
 @keyframes logoRise {
@@ -539,7 +539,7 @@ Keep maya-bg.png in the same folder as this file.
     text-align: center;
     text-shadow: 0 0 12px rgba(140, 100, 255, 0.9);
     opacity: 0;
-    animation: tagIn 2s ease-out 4.6s forwards;
+    animation: tagIn 2s ease-out 6.6s forwards;
 }
 
 @keyframes tagIn {
